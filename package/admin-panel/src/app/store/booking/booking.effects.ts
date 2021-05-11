@@ -1,28 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Booking } from '@models/booking.model';
 
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { map, mergeMap } from 'rxjs/operators';
+import { Actions } from '@ngrx/effects';
+import { CrudEffect } from '@store/effect/crud.effect';
 
 import { BookingService } from '@services/booking.service';
-import { addBookings, loadBookings } from '@store/booking/booking.actions';
+import {
+    addBooking,
+    addBookings,
+    beginAddBooking,
+    beginDeleteBookings,
+    beginUpdateBooking,
+    deleteBookings,
+    loadBookings,
+    updateBooking,
+} from '@store/booking/booking.actions';
 
 @Injectable()
-export class BookingEffects {
-    constructor(
-        private actions$: Actions,
-        private bookingService: BookingService
-    ) {}
-
-    bookings$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(loadBookings),
-            mergeMap(() =>
-                this.bookingService.findAll().pipe(
-                    map((bookings) => addBookings({ bookings }))
-                    // catchError() // TODO - add global error handler
-                )
-            )
-        )
-    );
+export class BookingEffects extends CrudEffect<Booking, string> {
+    constructor(actions$: Actions, bookingService: BookingService) {
+        super(
+            actions$,
+            bookingService,
+            loadBookings,
+            addBookings,
+            addBooking,
+            updateBooking,
+            deleteBookings,
+            beginAddBooking,
+            beginUpdateBooking,
+            beginDeleteBookings
+        );
+    }
 }

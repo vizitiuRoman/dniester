@@ -3,7 +3,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import {
+    NbAuthModule,
+    NbPasswordAuthStrategy,
+    NbTokenLocalStorage,
+} from '@nebular/auth';
 import {
     NbThemeModule,
     NbLayoutModule,
@@ -73,6 +77,7 @@ import { AppRoutingModule } from './app-routing.module';
     ],
     providers: [
         NbSidebarService,
+        NbTokenLocalStorage,
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     ],
     bootstrap: [AppComponent],

@@ -10,8 +10,7 @@ import { BookingDto } from './dto/BookingDto';
 @Controller('bookings')
 @ApiTags('bookings')
 export class BookingController {
-    constructor(private bookingService: BookingService) {
-    }
+    constructor(private bookingService: BookingService) {}
 
     @Get()
     @Auth()
@@ -24,5 +23,4 @@ export class BookingController {
     getBookings(@AuthUser() user: UserEntity): Promise<BookingDto[]> {
         return this.bookingService.getBookingsByUser(user.id);
     }
-
 }

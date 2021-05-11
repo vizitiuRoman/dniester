@@ -27,7 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (isAuth) {
                     request = request.clone({
                         setHeaders: {
-                            Authorization: `Basic ${this.nbTokenService
+                            Authorization: `Bearer ${this.nbTokenService
                                 .get()
                                 .getValue()}`,
                         },

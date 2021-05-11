@@ -4,9 +4,25 @@ import { Update } from '@ngrx/entity';
 
 export const loadBookings = createAction('[Booking/API] Load Bookings');
 
+export const beginAddBooking = createAction(
+    '[Booking/API] Begin Add Booking',
+    props<{ data: Booking }>()
+);
+
+export const beginUpdateBooking = createAction(
+    '[Booking/API] Begin Update Booking',
+    props<{ data: Booking }>()
+);
+
+export const beginDeleteBookings = createAction(
+    '[Booking/API] Begin Delete Bookings',
+    // tslint:disable-next-line:no-any
+    props<{ ids: any[] }>()
+);
+
 export const addBooking = createAction(
     '[Booking/API] Add Booking',
-    props<{ booking: Booking }>()
+    props<{ data: Booking }>()
 );
 
 export const upsertBooking = createAction(
@@ -16,7 +32,7 @@ export const upsertBooking = createAction(
 
 export const addBookings = createAction(
     '[Booking/API] Add Bookings',
-    props<{ bookings: Booking[] }>()
+    props<{ data: Booking[] }>()
 );
 
 export const upsertBookings = createAction(
@@ -26,7 +42,7 @@ export const upsertBookings = createAction(
 
 export const updateBooking = createAction(
     '[Booking/API] Update Booking',
-    props<{ booking: Update<Booking> }>()
+    props<{ data: Update<Booking> }>()
 );
 
 export const updateBookings = createAction(
@@ -41,7 +57,8 @@ export const deleteBooking = createAction(
 
 export const deleteBookings = createAction(
     '[Booking/API] Delete Bookings',
-    props<{ ids: string[] }>()
+    // tslint:disable-next-line:no-any
+    props<{ ids: any[] }>()
 );
 
 export const clearBookings = createAction('[Booking/API] Clear Bookings');

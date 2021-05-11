@@ -11,9 +11,7 @@ import { State } from '@store/booking/booking.reducer';
     styleUrls: ['./bookings.component.scss'],
 })
 export class BookingsComponent implements OnInit {
-    constructor(
-        private store: Store<State>
-    ) {}
+    constructor(private store: Store<State>) {}
 
     ngOnInit(): void {
         this.store.dispatch(loadBookings());

@@ -10,7 +10,7 @@ import { environment } from '@environments/environment';
 @Injectable({
     providedIn: 'root',
 })
-export class BookingService extends CrudService<Booking, number> {
+export class BookingService extends CrudService<Booking, string> {
     constructor(protected httpClient: HttpClient) {
         super(httpClient, `${environment.API_URL}/${BOOKINGS_API.default}`);
     }

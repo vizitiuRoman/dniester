@@ -33,4 +33,10 @@ export abstract class CrudService<T, ID> implements CrudRepository<T, ID> {
     public delete(id: ID): Observable<{ count: number }> {
         return this.httpClient.delete<{ count: number }>(this.url + '/' + id);
     }
+
+    public deleteByIDS(ids: ID[]): Observable<{ count: number }> {
+        return this.httpClient.post<{ count: number }>(this.url + '/delete', {
+            ids,
+        });
+    }
 }

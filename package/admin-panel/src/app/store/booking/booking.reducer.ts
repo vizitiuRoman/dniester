@@ -20,19 +20,19 @@ export const initialState: State = adapter.getInitialState({
 export const reducer = createReducer(
     initialState,
     on(BookingActions.addBooking, (state, action) =>
-        adapter.addOne(action.booking, state)
+        adapter.addOne(action.data, state)
     ),
     on(BookingActions.upsertBooking, (state, action) =>
         adapter.upsertOne(action.booking, state)
     ),
     on(BookingActions.addBookings, (state, action) =>
-        adapter.addMany(action.bookings, state)
+        adapter.addMany(action.data, state)
     ),
     on(BookingActions.upsertBookings, (state, action) =>
         adapter.upsertMany(action.bookings, state)
     ),
     on(BookingActions.updateBooking, (state, action) =>
-        adapter.updateOne(action.booking, state)
+        adapter.updateOne(action.data, state)
     ),
     on(BookingActions.updateBookings, (state, action) =>
         adapter.updateMany(action.bookings, state)
