@@ -32,6 +32,9 @@
       "@services/*": [
         "src/app/core/services/*"
       ],
+      "@interceptors/*": [
+        "src/app/core/interceptors/*"
+      ],
       "@pages/*": [
         "src/app/pages/*"
       ],

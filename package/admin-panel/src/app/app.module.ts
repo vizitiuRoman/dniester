@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ServicesComponent } from '@pages/services/services.component';
 import { environment } from '@environments/environment';
+import { TokenInterceptor } from '@interceptors/token.interceptor';
 
 import { reducers, metaReducers } from './store';
 import { AppComponent } from './app.component';
@@ -70,7 +71,10 @@ import { AppRoutingModule } from './app-routing.module';
         }),
         EffectsModule.forRoot([]),
     ],
-    providers: [NbSidebarService],
+    providers: [
+        NbSidebarService,
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
