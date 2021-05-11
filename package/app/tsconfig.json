@@ -1,0 +1,72 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "jsx": "react",
+        "lib": ["es6"],
+        "moduleResolution": "node",
+        "noEmit": true,
+        "strict": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "target": "esnext",
+        "resolveJsonModule": true,
+        "baseUrl": "./",
+        "paths": {
+            "@environments/*": [
+                "src/environments/*"
+            ],
+            "@core/*": [
+                "src/core/*"
+            ],
+            "@grpc/*": [
+                "src/grpc/*"
+            ],
+            "@hoc/*": [
+                "src/core/hoc/*"
+            ],
+            "@store/*": [
+                "src/store/*"
+            ],
+            "@hooks/*": [
+                "src/core/hooks/*"
+            ],
+            "@contexts/*": [
+                "src/core/contexts/*"
+            ],
+            "@navigations/*": [
+                "src/pages/navigation/*"
+            ],
+            "@screens/*": [
+                "src/pages/screens/*"
+            ],
+            "@shared/*": [
+                "src/shared/*"
+            ],
+            "@components/*": [
+                "src/shared/components/*"
+            ],
+            "@shared-types/*": [
+                "src/shared/types/*"
+            ],
+            "@theme/*": [
+                "src/shared/theme/*"
+            ],
+            "@constants/*": [
+                "src/shared/constants/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "babel.config.js",
+        "metro.config.js",
+        "coverage-ts",
+        "__tests__",
+        "src/grpc/grpc-proto"
+    ]
+}

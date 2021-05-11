@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./grpc-proto/user";
+
+enum EStatus {
+  UNKNOWN = 0;
+  SUCCESS = 1;
+  ERROR = 2;
+}
+
+message User {
+  uint64 id = 1;
+  string email = 2;
+}
+
+message CreateUserReq {
+  string email = 1;
+  string password = 2;
+}
+
+message UpdateUserReq {
+  string email = 1;
+  string password = 2;
+  uint64 id = 3;
+}
+
+message VerifyUserReq {
+  string email = 1;
+  string password = 2;
+}
+
+message UserReq {
+  uint64 id = 1;
+}
+
+message UserRes {
+  uint64 id = 1;
+  string email = 2;
+}
+
+message UsersRes {
+  repeated UserRes users = 1;
+}
+
+message Stub {}
+
+service UserService {
+  rpc CreateUser (CreateUserReq) returns (UserRes) {
+  }
+
+  rpc UpdateUser (UpdateUserReq) returns (UserRes) {
+  }
+
+  rpc DeleteUser (UserReq) returns (Stub) {
+  }
+
+  rpc VerifyUser (VerifyUserReq) returns (UserRes) {
+  }
+
+  rpc GetUser (UserReq) returns (UserRes) {
+  }
+
+  rpc GetUsers (Stub) returns (UsersRes) {
+  }
+}
