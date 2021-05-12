@@ -9,6 +9,5 @@ export class createRelations1619910575220 implements MigrationInterface {
         `);
     }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-    }
+    public async down(queryRunner: QueryRunner): Promise<void> {}
 }

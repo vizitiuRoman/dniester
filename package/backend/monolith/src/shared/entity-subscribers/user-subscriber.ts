@@ -1,9 +1,9 @@
-import {
+import type {
     EntitySubscriberInterface,
-    EventSubscriber,
     InsertEvent,
     UpdateEvent,
 } from 'typeorm';
+import { EventSubscriber } from 'typeorm';
 
 import { UserEntity } from '../../modules/user/user.entity';
 import { UtilsService } from '../../providers/utils.service';

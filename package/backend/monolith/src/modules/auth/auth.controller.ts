@@ -60,9 +60,7 @@ export class AuthController {
     async userRegister(
         @Body() userRegisterDto: UserRegisterDto,
     ): Promise<UserDto> {
-        const createdUser = await this.userService.createUser(
-            userRegisterDto,
-        );
+        const createdUser = await this.userService.createUser(userRegisterDto);
 
         return createdUser.toDto();
     }

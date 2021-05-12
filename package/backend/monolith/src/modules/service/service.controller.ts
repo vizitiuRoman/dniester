@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UUIDParam } from '../../decorators/http.decorators';
 
+import { UUIDParam } from '../../decorators/http.decorators';
 import { ServiceDto } from './dto/ServiceDto';
 import { ServiceService } from './service.service';
 
