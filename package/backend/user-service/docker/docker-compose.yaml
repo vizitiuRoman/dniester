@@ -1,14 +1,14 @@
 version: "3.7"
 
 services:
-  user_db:
+  user_pg:
     image: postgres
-    container_name: user_db
+    container_name: user_pg
     restart: always
     environment:
-      POSTGRES_USER: user
+      POSTGRES_USER: userdb
       POSTGRES_HOST: localhost
-      POSTGRES_PASSWORD: user
-      POSTGRES_DATABASE: user
+      POSTGRES_PASSWORD: userdb
+      POSTGRES_DATABASE: userdb
     ports:
-      - 5444:5444
+      - 5432:5432
