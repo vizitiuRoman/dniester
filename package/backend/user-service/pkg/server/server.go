@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/joho/godotenv"
 	pb "github.com/user-service/grpc-proto/user"
 	"github.com/user-service/pkg/controller"
 	"github.com/user-service/pkg/logger"
@@ -15,25 +16,29 @@ import (
 	"google.golang.org/grpc"
 )
 
-type server struct {
-	port string
-}
-
-func NewServer(port string) *server {
-	return &server{
-		port: port,
+func Run() error {
+	err := godotenv.Load()
+	if err != nil {
+		return err
 	}
+
+	s, err := store.NewStore()
+	if err != nil {
+		return err
+	}
+
+	startGRPC(s, os.Getenv("PORT"))
+	return nil
 }
 
-func (srv *server) StartGRPC(store *store.Store) {
+func startGRPC(store *store.Store, port string) {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	listenCh := make(chan error, 1)
 	interruptCh := make(chan os.Signal, 1)
-
 	zapLogger := logger.NewLogger()
 
-	listener, err := net.Listen("tcp", ":"+srv.port)
+	listener, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		zapLogger.Fatalf("Listen error: %v", err)
 	}
@@ -44,7 +49,7 @@ func (srv *server) StartGRPC(store *store.Store) {
 	)
 
 	go func(listen chan error) {
-		zapLogger.Info("Service started on port: " + srv.port)
+		zapLogger.Info("Service started on port: " + port)
 		listen <- gRPCServer.Serve(listener)
 	}(listenCh)
 
