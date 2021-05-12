@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BaseModel, Create } from '@models/base.model';
 
 import { Observable } from 'rxjs';
 
@@ -8,13 +9,14 @@ import { CrudRepository } from '@interfaces/crud-repository.interface';
 @Injectable({
     providedIn: 'root',
 })
-export abstract class CrudService<T, ID> implements CrudRepository<T, ID> {
+export abstract class CrudHttpService<T extends BaseModel<ID>, ID>
+    implements CrudRepository<T, ID> {
     protected constructor(
         protected httpClient: HttpClient,
         protected url: string
     ) {}
 
-    public save(t: T): Observable<T> {
+    public save(t: Create<T, ID>): Observable<T> {
         return this.httpClient.post<T>(this.url, t);
     }
 

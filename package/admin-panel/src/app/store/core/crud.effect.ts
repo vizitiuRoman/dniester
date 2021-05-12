@@ -7,7 +7,7 @@ import { ActionCreator, TypedAction } from '@ngrx/store/src/models';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { CrudRepository } from '@interfaces/crud-repository.interface';
-import { BaseModel } from '@models/base.model';
+import { BaseModel, Create } from '@models/base.model';
 
 @Injectable()
 export class CrudEffect<T extends BaseModel<ID>, ID> {
@@ -35,7 +35,9 @@ export class CrudEffect<T extends BaseModel<ID>, ID> {
         >,
         private beginCreate: ActionCreator<
             string,
-            (data: { data: T }) => { data: T } & TypedAction<string>
+            (data: {
+                data: Create<T, ID>;
+            }) => { data: Create<T, ID> } & TypedAction<string>
         >,
         private beginUpdate: ActionCreator<
             string,

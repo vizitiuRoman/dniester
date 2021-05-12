@@ -1,9 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { bookingsFeatureKey } from './booking.reducer';
 import * as fromBooking from './booking.reducer';
 
 export const selectBookingState = createFeatureSelector<fromBooking.State>(
-    'bookings'
+    bookingsFeatureKey
 );
 
 export const selectBookingIds = createSelector(

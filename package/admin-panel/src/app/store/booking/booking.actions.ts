@@ -1,12 +1,14 @@
-import { Booking } from '@models/booking.model';
+import { Create } from '@models/base.model';
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+
+import { Booking } from '@models/booking.model';
 
 export const loadBookings = createAction('[Booking/API] Load Bookings');
 
 export const beginAddBooking = createAction(
     '[Booking/API] Begin Add Booking',
-    props<{ data: Booking }>()
+    props<{ data: Create<Booking, string> }>()
 );
 
 export const beginUpdateBooking = createAction(

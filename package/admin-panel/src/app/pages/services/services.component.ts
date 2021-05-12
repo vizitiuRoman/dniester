@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '@services/service.service';
+import { Store } from '@ngrx/store';
+
+import { loadServices } from '@store/service/service.actions';
+import { State } from '@store/index';
 
 @Component({
     selector: 'app-services',
@@ -7,9 +10,9 @@ import { ServiceService } from '@services/service.service';
     styleUrls: ['./services.component.scss'],
 })
 export class ServicesComponent implements OnInit {
-    constructor(private serviceService: ServiceService) {}
+    constructor(private store: Store<State>) {}
 
     ngOnInit(): void {
-        this.serviceService.getServices().subscribe();
+        this.store.dispatch(loadServices());
     }
 }

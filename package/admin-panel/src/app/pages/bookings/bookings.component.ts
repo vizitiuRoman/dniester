@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { loadBookings } from '@store/booking/booking.actions';
-import { State } from '@store/booking/booking.reducer';
+import { State } from '@store/index';
 
 @Component({
     selector: 'app-bookings',

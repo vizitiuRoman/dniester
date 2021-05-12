@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Booking } from '@models/booking.model';
 
 import { Actions } from '@ngrx/effects';
-import { CrudEffect } from '@store/effect/crud.effect';
+import { CrudEffect } from '@store/core/crud.effect';
 
 import { BookingService } from '@services/booking.service';
 import {
