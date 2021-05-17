@@ -9,7 +9,7 @@ import (
 
 	"github.com/joho/godotenv"
 	pb "github.com/user-service/grpc-proto/user"
-	"github.com/user-service/pkg/controller"
+	grpc2 "github.com/user-service/pkg/delivery/grpc"
 	"github.com/user-service/pkg/logger"
 	"github.com/user-service/pkg/services"
 	"github.com/user-service/pkg/store"
@@ -45,7 +45,7 @@ func startGRPC(store *store.Store, port string) {
 
 	gRPCServer := grpc.NewServer()
 	pb.RegisterUserServiceServer(
-		gRPCServer, controller.NewUserController(services.NewManager(store), zapLogger),
+		gRPCServer, grpc2.NewGRPCUser(services.NewManager(store), zapLogger),
 	)
 
 	go func(listen chan error) {

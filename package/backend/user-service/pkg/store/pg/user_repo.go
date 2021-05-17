@@ -1,6 +1,8 @@
 package pg
 
 import (
+	"context"
+
 	"github.com/jmoiron/sqlx"
 	. "github.com/user-service/pkg/domain"
 )
@@ -13,8 +15,10 @@ func NewUserRepo(db *sqlx.DB) *userRepo {
 	return &userRepo{db: db}
 }
 
-func (repo *userRepo) CreateUser(user *User) (*User, error) {
-	rows, err := repo.db.NamedQuery(`
+func (repo *userRepo) CreateUser(ctx context.Context, user *User) (*User, error) {
+	rows, err := repo.db.NamedQueryContext(
+		ctx,
+		`
 			INSERT INTO users (email, password)
 			VALUES (:email, :password)
 			RETURNING email, id;
@@ -33,17 +37,19 @@ func (repo *userRepo) CreateUser(user *User) (*User, error) {
 	return user, nil
 }
 
-func (repo *userRepo) GetUser(userID uint64) (*User, error) {
+func (repo *userRepo) GetUser(ctx context.Context, userID uint64) (*User, error) {
 	user := &User{}
-	err := repo.db.Get(user, "SELECT email, id FROM users WHERE id = $1", userID)
+	err := repo.db.GetContext(ctx, user, "SELECT email, id FROM users WHERE id = $1", userID)
 	if err != nil {
 		return &User{}, err
 	}
 	return user, nil
 }
 
-func (repo *userRepo) UpdateUser(user *User) (*User, error) {
-	rows, err := repo.db.Query(`
+func (repo *userRepo) UpdateUser(ctx context.Context, user *User) (*User, error) {
+	rows, err := repo.db.QueryContext(
+		ctx,
+		`
 			UPDATE users 
 			SET email=$2, password=$3 
 			WHERE id = $1
@@ -62,8 +68,10 @@ func (repo *userRepo) UpdateUser(user *User) (*User, error) {
 	return user, nil
 }
 
-func (repo *userRepo) DeleteUser(userID uint64) error {
-	_, err := repo.db.Query(`DELETE FROM users WHERE id = $1`,
+func (repo *userRepo) DeleteUser(ctx context.Context, userID uint64) error {
+	_, err := repo.db.QueryContext(
+		ctx,
+		`DELETE FROM users WHERE id = $1`,
 		userID,
 	)
 	if err != nil {
@@ -72,9 +80,9 @@ func (repo *userRepo) DeleteUser(userID uint64) error {
 	return nil
 }
 
-func (repo *userRepo) GetUserByEmail(email string) (*User, error) {
+func (repo *userRepo) GetUserByEmail(ctx context.Context, email string) (*User, error) {
 	user := &User{}
-	err := repo.db.Get(user, "SELECT email, id, password FROM users WHERE email = $1", email)
+	err := repo.db.GetContext(ctx, user, "SELECT email, id, password FROM users WHERE email = $1", email)
 	if err != nil {
 		return &User{}, err
 	}
