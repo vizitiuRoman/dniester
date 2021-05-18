@@ -6,16 +6,16 @@ import type {
 import { Injectable } from '@nestjs/common';
 import type { Observable } from 'rxjs';
 
-import type { UserEntity } from '../modules/user/user.entity';
+import type { CompanyEntity } from '../modules/company/company.entity';
 import { ContextService } from '../providers/context.service';
 
 @Injectable()
-export class AuthUserInterceptor implements NestInterceptor {
+export class AuthCompanyInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const request = context.switchToHttp().getRequest();
 
-        const user = <UserEntity>request.user;
-        ContextService.setAuthUser(user);
+        const company = <CompanyEntity>request.company;
+        ContextService.setAuthCompany(company);
 
         return next.handle();
     }

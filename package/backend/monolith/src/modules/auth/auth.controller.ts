@@ -16,23 +16,23 @@ import {
     ApiTags,
 } from '@nestjs/swagger';
 
-import { AuthUser } from '../../decorators/auth-user.decorator';
+import { AuthCompany } from '../../decorators/auth-company.decorator';
 import { ApiFile } from '../../decorators/swagger.schema';
 import { AuthGuard } from '../../guards/auth.guard';
-import { AuthUserInterceptor } from '../../interceptors/auth-user-interceptor.service';
-import { UserDto } from '../user/dto/UserDto';
-import { UserEntity } from '../user/user.entity';
-import { UserService } from '../user/user.service';
+import { AuthCompanyInterceptor } from '../../interceptors/auth-company-interceptor.service';
+import { CompanyEntity } from '../company/company.entity';
+import { CompanyService } from '../company/company.service';
+import { CompanyDto } from '../company/dto/CompanyDto';
 import { AuthService } from './auth.service';
+import { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { LoginPayloadDto } from './dto/LoginPayloadDto';
-import { UserLoginDto } from './dto/UserLoginDto';
-import { UserRegisterDto } from './dto/UserRegisterDto';
+import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
     constructor(
-        public readonly userService: UserService,
+        public readonly companyService: CompanyService,
         public readonly authService: AuthService,
     ) {}
 
@@ -40,38 +40,42 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({
         type: LoginPayloadDto,
-        description: 'User info with access token',
+        description: 'Company info with access token',
     })
-    async userLogin(
-        @Body() userLoginDto: UserLoginDto,
+    async companyLogin(
+        @Body() companyLoginDto: CompanyLoginDto,
     ): Promise<LoginPayloadDto> {
-        const userEntity = await this.authService.validateUser(userLoginDto);
+        const companyEntity = await this.authService.validateCompany(
+            companyLoginDto,
+        );
 
-        const token = await this.authService.createToken(userEntity);
-        return new LoginPayloadDto(userEntity.toDto(), token);
+        const token = await this.authService.createToken(companyEntity);
+        return new LoginPayloadDto(companyEntity.toDto(), token);
     }
 
     @Post('register')
     @HttpCode(HttpStatus.OK)
-    @ApiOkResponse({ type: UserDto, description: 'Successfully Registered' })
+    @ApiOkResponse({ type: CompanyDto, description: 'Successfully Registered' })
     @ApiConsumes('multipart/form-data')
     @ApiFile([{ name: 'avatar' }])
     @UseInterceptors(FileInterceptor('avatar'))
-    async userRegister(
-        @Body() userRegisterDto: UserRegisterDto,
-    ): Promise<UserDto> {
-        const createdUser = await this.userService.createUser(userRegisterDto);
+    async companyRegister(
+        @Body() companyRegisterDto: CompanyRegisterDto,
+    ): Promise<CompanyDto> {
+        const createdCompany = await this.companyService.createCompany(
+            companyRegisterDto,
+        );
 
-        return createdUser.toDto();
+        return createdCompany.toDto();
     }
 
     @Get('me')
     @HttpCode(HttpStatus.OK)
     @UseGuards(AuthGuard)
-    @UseInterceptors(AuthUserInterceptor)
+    @UseInterceptors(AuthCompanyInterceptor)
     @ApiBearerAuth()
-    @ApiOkResponse({ type: UserDto, description: 'current user info' })
-    getCurrentUser(@AuthUser() user: UserEntity) {
-        return user.toDto();
+    @ApiOkResponse({ type: CompanyDto, description: 'current company info' })
+    getCurrentCompany(@AuthCompany() company: CompanyEntity) {
+        return company.toDto();
     }
 }

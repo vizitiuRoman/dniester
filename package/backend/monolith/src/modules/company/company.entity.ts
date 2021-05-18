@@ -3,10 +3,10 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { AbstractEntity } from '../../common/abstract.entity';
 import { BookingEntity } from '../booking/booking.entity';
 import { ServiceEntity } from '../service/service.entity';
-import { UserDto } from './dto/UserDto';
+import { CompanyDto } from './dto/CompanyDto';
 
-@Entity({ name: 'users' })
-export class UserEntity extends AbstractEntity<UserDto> {
+@Entity({ name: 'companies' })
+export class CompanyEntity extends AbstractEntity<CompanyDto> {
     @Column({ unique: true, nullable: true })
     email: string;
 
@@ -16,11 +16,11 @@ export class UserEntity extends AbstractEntity<UserDto> {
     @Column({ nullable: true })
     fullName: string;
 
-    @OneToMany(() => ServiceEntity, (service) => service.user)
+    @OneToMany(() => ServiceEntity, (service) => service.company)
     services: ServiceEntity[];
 
-    @OneToMany(() => BookingEntity, (service) => service.user)
+    @OneToMany(() => BookingEntity, (booking) => booking.company)
     bookings: BookingEntity[];
 
-    dtoClass = UserDto;
+    dtoClass = CompanyDto;
 }

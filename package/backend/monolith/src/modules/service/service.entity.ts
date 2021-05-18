@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { AbstractEntity } from '../../common/abstract.entity';
 import { BookingEntity } from '../booking/booking.entity';
-import { UserEntity } from '../user/user.entity';
+import { CompanyEntity } from '../company/company.entity';
 import { ServiceDto } from './dto/ServiceDto';
 
 @Entity({ name: 'services' })
@@ -11,10 +11,10 @@ export class ServiceEntity extends AbstractEntity<ServiceDto> {
     name: string;
 
     @Column({ nullable: true })
-    userId: string;
+    companyId: string;
 
-    @ManyToOne(() => UserEntity, (user) => user.services)
-    user: UserEntity;
+    @ManyToOne(() => CompanyEntity, (company) => company.services)
+    company: CompanyEntity;
 
     @OneToMany(() => BookingEntity, (booking) => booking.service)
     bookings: BookingEntity[];

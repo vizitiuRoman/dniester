@@ -1,41 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { UserNotFoundException } from '../../exceptions/user-not-found.exception';
+import { CompanyNotFoundException } from '../../exceptions/company-not-found.exception';
 import { UtilsService } from '../../providers/utils.service';
 import { ConfigService } from '../../shared/services/config.service';
-import type { UserDto } from '../user/dto/UserDto';
-import type { UserEntity } from '../user/user.entity';
-import { UserService } from '../user/user.service';
+import type { CompanyEntity } from '../company/company.entity';
+import { CompanyService } from '../company/company.service';
+import type { CompanyDto } from '../company/dto/CompanyDto';
+import type { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { TokenPayloadDto } from './dto/TokenPayloadDto';
-import type { UserLoginDto } from './dto/UserLoginDto';
 
 @Injectable()
 export class AuthService {
     constructor(
         public readonly jwtService: JwtService,
         public readonly configService: ConfigService,
-        public readonly userService: UserService,
+        public readonly companyService: CompanyService,
     ) {}
 
-    async createToken(user: UserEntity | UserDto): Promise<TokenPayloadDto> {
+    async createToken(
+        company: CompanyEntity | CompanyDto,
+    ): Promise<TokenPayloadDto> {
         return new TokenPayloadDto({
             expiresIn: this.configService.getNumber('JWT_EXPIRATION_TIME'),
-            accessToken: await this.jwtService.signAsync({ id: user.id }),
+            accessToken: await this.jwtService.signAsync({ id: company.id }),
         });
     }
 
-    async validateUser(userLoginDto: UserLoginDto): Promise<UserEntity> {
-        const user = await this.userService.findOne({
-            email: userLoginDto.email,
+    async validateCompany(
+        companyLoginDto: CompanyLoginDto,
+    ): Promise<CompanyEntity> {
+        const company = await this.companyService.findOne({
+            email: companyLoginDto.email,
         });
         const isPasswordValid = await UtilsService.validateHash(
-            userLoginDto.password,
-            user && user.password,
+            companyLoginDto.password,
+            company && company.password,
         );
-        if (!user || !isPasswordValid) {
-            throw new UserNotFoundException();
+        if (!company || !isPasswordValid) {
+            throw new CompanyNotFoundException();
         }
-        return user;
+        return company;
     }
 }

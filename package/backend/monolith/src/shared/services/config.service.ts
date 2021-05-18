@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 import type { IAwsConfig } from '../../interfaces/IAwsConfig';
 import { SnakeNamingStrategy } from '../../snake-naming.strategy';
-import { UserSubscriber } from '../entity-subscribers/user-subscriber';
+import { CompanySubscriber } from '../entity-subscribers/company-subscriber';
 
 export class ConfigService {
     constructor() {
@@ -78,7 +78,7 @@ export class ConfigService {
             username: this.get('DB_USERNAME'),
             password: this.get('DB_PASSWORD'),
             database: this.get('DB_DATABASE'),
-            subscribers: [UserSubscriber],
+            subscribers: [CompanySubscriber],
             migrationsRun: true,
             logging: this.nodeEnv === 'development',
             namingStrategy: new SnakeNamingStrategy(),

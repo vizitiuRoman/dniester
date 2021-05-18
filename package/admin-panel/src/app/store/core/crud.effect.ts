@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { CreateEffectMetadata } from '@ngrx/effects/src/models';
 import { Update } from '@ngrx/entity';
 import { ActionCreator, TypedAction } from '@ngrx/store/src/models';
 
@@ -9,8 +10,16 @@ import { map, mergeMap } from 'rxjs/operators';
 import { CrudRepository } from '@interfaces/crud-repository.interface';
 import { BaseModel, Create } from '@models/base.model';
 
+interface CrudEffectRepository {
+    findAll$: CreateEffectMetadata;
+    save$: CreateEffectMetadata;
+    update$: CreateEffectMetadata;
+    delete$: CreateEffectMetadata;
+}
+
 @Injectable()
-export class CrudEffect<T extends BaseModel<ID>, ID> {
+export class CrudEffect<T extends BaseModel<ID>, ID>
+    implements CrudEffectRepository {
     constructor(
         private actions$: Actions,
         private repo: CrudRepository<T, ID>,

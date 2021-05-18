@@ -9,7 +9,7 @@ export class createServicesTable1619909388325 implements MigrationInterface {
                 "created_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "updated_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "name"          character varying,
-                "user_id"       uuid              NOT NULL,
+                "company_id"       uuid              NOT NULL,
                 CONSTRAINT "PK_a3ffb1cf16421b9fc6f907b7433" PRIMARY KEY ("id")
             )`);
     }

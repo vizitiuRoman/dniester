@@ -17,18 +17,20 @@ export class ServiceController {
         description: 'Get services list',
         type: ServiceDto,
     })
-    getUsers(): Promise<ServiceDto[]> {
+    getCompanies(): Promise<ServiceDto[]> {
         return this.serviceService.getServices();
     }
 
-    @Get('user/:id')
+    @Get('company/:id')
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,
         description: 'Get services list',
         type: ServiceDto,
     })
-    getServicesByUser(@UUIDParam('id') userId: string): Promise<ServiceDto[]> {
-        return this.serviceService.getServicesByUser(userId);
+    getServicesByCompany(
+        @UUIDParam('id') companyId: string,
+    ): Promise<ServiceDto[]> {
+        return this.serviceService.getServicesByCompany(companyId);
     }
 }

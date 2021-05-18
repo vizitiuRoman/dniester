@@ -10,47 +10,47 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { RoleType } from '../../common/constants/role-type';
 import { PageDto } from '../../common/dto/PageDto';
-import { AuthUser } from '../../decorators/auth-user.decorator';
+import { AuthCompany } from '../../decorators/auth-company.decorator';
 import { Auth, UUIDParam } from '../../decorators/http.decorators';
 import { TranslationService } from '../../shared/services/translation.service';
-import { UserDto } from './dto/UserDto';
-import { UsersPageOptionsDto } from './dto/UsersPageOptionsDto';
-import { UserEntity } from './user.entity';
-import { UserService } from './user.service';
+import { CompanyEntity } from './company.entity';
+import { CompanyService } from './company.service';
+import { CompaniesPageOptionsDto } from './dto/CompaniesPageOptionsDto';
+import { CompanyDto } from './dto/CompanyDto';
 
-@Controller('users')
-@ApiTags('users')
-export class UserController {
+@Controller('companies')
+@ApiTags('companies')
+export class CompanyController {
     constructor(
-        private userService: UserService,
+        private companyService: CompanyService,
         private readonly translationService: TranslationService,
     ) {}
 
     @Get('admin')
     @Auth(RoleType.USER)
     @HttpCode(HttpStatus.OK)
-    async admin(@AuthUser() user: UserEntity): Promise<string> {
+    async admin(@AuthCompany() company: CompanyEntity): Promise<string> {
         const translation = await this.translationService.translate(
             'keywords.admin',
             {
                 lang: 'en',
             },
         );
-        return `${translation} ${user.fullName}`;
+        return `${translation} ${company.fullName}`;
     }
 
     @Get()
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,
-        description: 'Get users list',
+        description: 'Get companies list',
         type: PageDto,
     })
-    getUsers(
+    getCompanies(
         @Query(new ValidationPipe({ transform: true }))
-        pageOptionsDto: UsersPageOptionsDto,
-    ): Promise<PageDto<UserDto>> {
-        return this.userService.getUsers(pageOptionsDto);
+        pageOptionsDto: CompaniesPageOptionsDto,
+    ): Promise<PageDto<CompanyDto>> {
+        return this.companyService.getCompanies(pageOptionsDto);
     }
 
     @Get(':id')
@@ -58,10 +58,10 @@ export class UserController {
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,
-        description: 'Get users list',
-        type: UserDto,
+        description: 'Get companies list',
+        type: CompanyDto,
     })
-    getUser(@UUIDParam('id') userId: string): Promise<UserDto> {
-        return this.userService.getUser(userId);
+    getCompany(@UUIDParam('id') companyId: string): Promise<CompanyDto> {
+        return this.companyService.getCompany(companyId);
     }
 }

@@ -12,10 +12,10 @@ export class BookingService {
         return bookings.toDtos();
     }
 
-    async getBookingsByUser(userId: string): Promise<BookingDto[]> {
+    async getBookingsByCompany(companyId: string): Promise<BookingDto[]> {
         const bookings = await this.bookingRepository.find({
             where: {
-                userId,
+                companyId,
             },
         });
         return bookings.toDtos();

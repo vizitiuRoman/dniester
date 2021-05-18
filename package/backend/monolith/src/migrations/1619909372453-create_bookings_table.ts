@@ -9,7 +9,7 @@ export class createBookingsTable1619909372453 implements MigrationInterface {
                 "created_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "updated_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "service_id"    uuid              NOT NULL DEFAULT uuid_generate_v4(),
-                "user_id"       uuid              NOT NULL DEFAULT uuid_generate_v4(),
+                "company_id"       uuid              NOT NULL DEFAULT uuid_generate_v4(),
                 CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id")
             )`);
     }

@@ -11,14 +11,14 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BookingModule } from './modules/booking/booking.module';
 import { MathModule } from './modules/math/math.module';
 import { ServiceModule } from './modules/service/service.module';
-import { UserModule } from './modules/user/user.module';
+import { CompanyModule } from './modules/company/company.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
 
 @Module({
     imports: [
         AuthModule,
-        UserModule,
+        CompanyModule,
         ServiceModule,
         BookingModule,
         MathModule,

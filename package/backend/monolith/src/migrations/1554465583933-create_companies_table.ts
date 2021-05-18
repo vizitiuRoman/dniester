@@ -1,9 +1,9 @@
 import type { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateUsersTable1554465583933 implements MigrationInterface {
+export class CreateCompaniesTable1554465583933 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.query(`
-            CREATE TABLE "users"
+            CREATE TABLE "companies"
             (
                 "id"            uuid              NOT NULL DEFAULT uuid_generate_v4(),
                 "created_at"    TIMESTAMP         NOT NULL DEFAULT now(),
@@ -17,6 +17,6 @@ export class CreateUsersTable1554465583933 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.query('DROP TABLE "users"');
+        await queryRunner.query('DROP TABLE "companies"');
     }
 }

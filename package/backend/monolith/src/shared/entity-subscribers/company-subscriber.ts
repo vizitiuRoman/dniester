@@ -5,22 +5,23 @@ import type {
 } from 'typeorm';
 import { EventSubscriber } from 'typeorm';
 
-import { UserEntity } from '../../modules/user/user.entity';
+import { CompanyEntity } from '../../modules/company/company.entity';
 import { UtilsService } from '../../providers/utils.service';
 
 @EventSubscriber()
-export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
+export class CompanySubscriber
+    implements EntitySubscriberInterface<CompanyEntity> {
     listenTo() {
-        return UserEntity;
+        return CompanyEntity;
     }
-    beforeInsert(event: InsertEvent<UserEntity>) {
+    beforeInsert(event: InsertEvent<CompanyEntity>) {
         if (event.entity.password) {
             event.entity.password = UtilsService.generateHash(
                 event.entity.password,
             );
         }
     }
-    beforeUpdate(event: UpdateEvent<UserEntity>) {
+    beforeUpdate(event: UpdateEvent<CompanyEntity>) {
         if (event.entity.password !== event.databaseEntity.password) {
             event.entity.password = UtilsService.generateHash(
                 event.entity.password,

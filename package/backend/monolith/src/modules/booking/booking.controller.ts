@@ -1,9 +1,9 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthUser } from '../../decorators/auth-user.decorator';
+import { AuthCompany } from '../../decorators/auth-company.decorator';
 import { Auth } from '../../decorators/http.decorators';
-import { UserEntity } from '../user/user.entity';
+import { CompanyEntity } from '../company/company.entity';
 import { BookingService } from './booking.service';
 import { BookingDto } from './dto/BookingDto';
 
@@ -20,7 +20,8 @@ export class BookingController {
         description: 'Get bookings list',
         type: BookingDto,
     })
-    getBookings(@AuthUser() user: UserEntity): Promise<BookingDto[]> {
-        return this.bookingService.getBookingsByUser(user.id);
+    getBookings(@AuthCompany() company: CompanyEntity): Promise<BookingDto[]> {
+        console.log(company);
+        return this.bookingService.getBookingsByCompany(company.id);
     }
 }

@@ -18,10 +18,10 @@ export class ServiceService {
         return services.toDtos();
     }
 
-    async getServicesByUser(userId: string): Promise<ServiceDto[]> {
+    async getServicesByCompany(companyId: string): Promise<ServiceDto[]> {
         const services = await this.serviceRepository.find({
             where: {
-                userId,
+                companyId,
             },
         });
         return services.toDtos();

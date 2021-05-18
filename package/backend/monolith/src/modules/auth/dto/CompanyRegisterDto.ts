@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 import { Trim } from '../../../decorators/transforms.decorator';
 
-export class UserRegisterDto {
+export class CompanyRegisterDto {
     @ApiProperty()
     @IsString()
     @IsEmail()
