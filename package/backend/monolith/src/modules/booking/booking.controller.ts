@@ -21,7 +21,6 @@ export class BookingController {
         type: BookingDto,
     })
     getBookings(@AuthCompany() company: CompanyEntity): Promise<BookingDto[]> {
-        console.log(company);
         return this.bookingService.getBookingsByCompany(company.id);
     }
 }
