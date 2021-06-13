@@ -25,8 +25,8 @@ import { CompanyService } from '../company/company.service';
 import { CompanyDto } from '../company/dto/CompanyDto';
 import { AuthService } from './auth.service';
 import { CompanyLoginDto } from './dto/CompanyLoginDto';
-import { LoginPayloadDto } from './dto/LoginPayloadDto';
 import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
+import { LoginPayloadDto } from './dto/LoginPayloadDto';
 
 @Controller('auth')
 @ApiTags('auth')

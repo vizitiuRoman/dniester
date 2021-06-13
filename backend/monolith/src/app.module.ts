@@ -9,9 +9,9 @@ import path from 'path';
 import { contextMiddleware } from './middlewares';
 import { AuthModule } from './modules/auth/auth.module';
 import { BookingModule } from './modules/booking/booking.module';
+import { CompanyModule } from './modules/company/company.module';
 import { MathModule } from './modules/math/math.module';
 import { ServiceModule } from './modules/service/service.module';
-import { CompanyModule } from './modules/company/company.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
 
