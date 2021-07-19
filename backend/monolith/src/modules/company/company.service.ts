@@ -21,10 +21,13 @@ export class CompanyService {
     /**
      * Find single company
      */
-    findOne(findData: FindConditions<CompanyEntity>): Promise<CompanyEntity> {
+    public findOne(
+        findData: FindConditions<CompanyEntity>,
+    ): Promise<CompanyEntity> {
         return this.companyRepository.findOne(findData);
     }
-    async findByCompanyNameOrEmail(
+
+    public async findByCompanyNameOrEmail(
         options: Partial<{ companyname: string; email: string }>,
     ): Promise<CompanyEntity | undefined> {
         const queryBuilder = this.companyRepository.createQueryBuilder(
@@ -45,7 +48,7 @@ export class CompanyService {
         return queryBuilder.getOne();
     }
 
-    async createCompany(
+    public async createCompany(
         companyRegisterDto: CompanyRegisterDto,
     ): Promise<CompanyEntity> {
         const company = this.companyRepository.create(companyRegisterDto);
@@ -53,7 +56,7 @@ export class CompanyService {
         return this.companyRepository.save(company);
     }
 
-    async getCompanies(
+    public async getCompanies(
         pageOptionsDto: CompaniesPageOptionsDto,
     ): Promise<PageDto<CompanyDto>> {
         const queryBuilder = this.companyRepository.createQueryBuilder(
@@ -66,7 +69,7 @@ export class CompanyService {
         return items.toPageDto(pageMetaDto);
     }
 
-    async getCompany(companyId: string) {
+    public async getCompany(companyId: string) {
         const queryBuilder = this.companyRepository.createQueryBuilder(
             'company',
         );
