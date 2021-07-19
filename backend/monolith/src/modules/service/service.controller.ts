@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthCompany } from '../../decorators/auth-company.decorator';
-import { Auth, UUIDParam } from '../../decorators/http.decorators';
+import { Auth } from '../../decorators/http.decorators';
 import { CompanyEntity } from '../company/company.entity';
 import { ServiceDto } from './dto/ServiceDto';
 import { ServiceService } from './service.service';
@@ -31,9 +31,9 @@ export class ServiceController {
         description: 'Get services list',
         type: ServiceDto,
     })
-    getServicesByCompany(
+    getCompanyServices(
         @AuthCompany() company: CompanyEntity,
     ): Promise<ServiceDto[]> {
-        return this.serviceService.getServicesByCompany(company.id);
+        return this.serviceService.getCompanyServices(company.id);
     }
 }

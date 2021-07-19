@@ -7,12 +7,8 @@ export class ServiceDto extends AbstractDto {
     @ApiPropertyOptional()
     name: string;
 
-    @ApiPropertyOptional()
-    companyId: string;
-
     constructor(service: ServiceEntity) {
         super(service);
         this.name = service.name;
-        this.companyId = service.companyId;
     }
 }
