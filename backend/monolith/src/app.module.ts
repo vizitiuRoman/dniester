@@ -9,9 +9,13 @@ import path from 'path';
 import { contextMiddleware } from './middlewares';
 import { AuthModule } from './modules/auth/auth.module';
 import { BookingModule } from './modules/booking/booking.module';
+import { BranchModule } from './modules/branch/branch.module';
 import { CompanyModule } from './modules/company/company.module';
 import { MathModule } from './modules/math/math.module';
+import { ReviewModule } from './modules/review/review.module';
 import { ServiceModule } from './modules/service/service.module';
+import { StaffModule } from './modules/staff/staff.module';
+import { UserModule } from './modules/user/user.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
 
@@ -20,7 +24,12 @@ import { SharedModule } from './shared/shared.module';
         AuthModule,
         CompanyModule,
         ServiceModule,
+        StaffModule,
+        ReviewModule,
+        BranchModule,
         BookingModule,
+        StaffModule,
+        UserModule,
         MathModule,
         TypeOrmModule.forRootAsync({
             imports: [SharedModule],
