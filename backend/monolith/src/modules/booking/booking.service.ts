@@ -5,7 +5,7 @@ import type { BookingDto } from './dto/BookingDto';
 
 @Injectable()
 export class BookingService {
-    constructor(public readonly bookingRepository: BookingRepository) {}
+    constructor(private readonly bookingRepository: BookingRepository) {}
 
     async getBookings(): Promise<BookingDto[]> {
         const bookings = await this.bookingRepository.find();
