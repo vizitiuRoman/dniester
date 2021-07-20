@@ -11,7 +11,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BookingModule } from './modules/booking/booking.module';
 import { BranchModule } from './modules/branch/branch.module';
 import { CompanyModule } from './modules/company/company.module';
-import { MathModule } from './modules/math/math.module';
 import { ReviewModule } from './modules/review/review.module';
 import { ServiceModule } from './modules/service/service.module';
 import { StaffModule } from './modules/staff/staff.module';
@@ -30,7 +29,6 @@ import { SharedModule } from './shared/shared.module';
         BookingModule,
         StaffModule,
         UserModule,
-        MathModule,
         TypeOrmModule.forRootAsync({
             imports: [SharedModule],
             useFactory: (configService: ConfigService) =>
