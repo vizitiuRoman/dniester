@@ -4,7 +4,7 @@ import type { FindConditions } from 'typeorm';
 import type { PageDto } from '../../common/dto/PageDto';
 import { AwsS3Service } from '../../shared/services/aws-s3.service';
 import { ValidatorService } from '../../shared/services/validator.service';
-import type { CompanyRegisterDto } from '../auth/dto/CompanyRegisterDto';
+import type { CompanyRegisterDto } from '../company-auth/dto/CompanyRegisterDto';
 import type { CompanyEntity } from './company.entity';
 import { CompanyRepository } from './company.repository';
 import type { CompaniesPageOptionsDto } from './dto/CompaniesPageOptionsDto';

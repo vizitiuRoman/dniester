@@ -7,7 +7,7 @@ import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
 import path from 'path';
 
 import { contextMiddleware } from './middlewares';
-import { AuthModule } from './modules/auth/auth.module';
+import { CompanyAuthModule } from './modules/company-auth/company-auth.module';
 import { BookingModule } from './modules/booking/booking.module';
 import { BranchModule } from './modules/branch/branch.module';
 import { CompanyModule } from './modules/company/company.module';
@@ -20,7 +20,7 @@ import { SharedModule } from './shared/shared.module';
 
 @Module({
     imports: [
-        AuthModule,
+        CompanyAuthModule,
         CompanyModule,
         ServiceModule,
         StaffModule,

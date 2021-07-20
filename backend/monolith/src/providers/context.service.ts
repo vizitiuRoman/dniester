@@ -1,10 +1,12 @@
 import requestContext from 'request-context';
 
 import type { CompanyEntity } from '../modules/company/company.entity';
+import type { UserEntity } from '../modules/user/user.entity';
 
 export class ContextService {
     private static readonly nameSpace = 'request';
     private static authCompanyKey = 'company_key';
+    private static authUserKey = 'user_key';
     private static languageKey = 'language_key';
 
     private static get<T>(key: string): T {
@@ -23,6 +25,10 @@ export class ContextService {
         ContextService.set(ContextService.authCompanyKey, company);
     }
 
+    static setAuthUser(user: UserEntity): void {
+        ContextService.set(ContextService.authUserKey, user);
+    }
+
     static setLanguage(language: string): void {
         ContextService.set(ContextService.languageKey, language);
     }
@@ -33,5 +39,9 @@ export class ContextService {
 
     static getAuthCompany(): CompanyEntity {
         return ContextService.get(ContextService.authCompanyKey);
+    }
+
+    static getAuthUser(): UserEntity {
+        return ContextService.get(ContextService.authUserKey);
     }
 }

@@ -1,6 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
+import type { FindConditions } from 'typeorm';
 
+import type { UserRegisterDto } from '../user-auth/dto/UserRegisterDto';
 import type { UserDto } from './dto/UserDto';
+import type { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -13,6 +16,24 @@ export class UserService {
         } catch (e) {
             Logger.error('[getUsers] error', e);
         }
+    }
+
+    /**
+     * Find single company
+     */
+    public findOne(findData: FindConditions<UserEntity>): Promise<UserEntity> {
+        return this.userRepository.findOne(findData);
+    }
+
+    /**
+     * create user
+     */
+    public async createUser(
+        userRegisterDto: UserRegisterDto,
+    ): Promise<UserEntity> {
+        const user = this.userRepository.create(userRegisterDto);
+
+        return this.userRepository.save(user);
     }
 
     public async getUsersWithFavoriteServices(): Promise<UserDto[]> {

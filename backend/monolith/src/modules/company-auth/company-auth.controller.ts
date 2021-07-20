@@ -23,17 +23,17 @@ import { AuthCompanyInterceptor } from '../../interceptors/auth-company-intercep
 import { CompanyEntity } from '../company/company.entity';
 import { CompanyService } from '../company/company.service';
 import { CompanyDto } from '../company/dto/CompanyDto';
-import { AuthService } from './auth.service';
+import { CompanyAuthService } from './company-auth.service';
 import { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
 import { LoginPayloadDto } from './dto/LoginPayloadDto';
 
-@Controller('auth')
-@ApiTags('auth')
-export class AuthController {
+@Controller('company/auth')
+@ApiTags('company/auth')
+export class CompanyAuthController {
     constructor(
         public readonly companyService: CompanyService,
-        public readonly authService: AuthService,
+        public readonly authService: CompanyAuthService,
     ) {}
 
     @Post('login')
