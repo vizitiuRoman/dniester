@@ -1,9 +1,8 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsOptional } from 'class-validator';
 
 import { AbstractDto } from '../../../common/dto/AbstractDto';
 import type { BookingDto } from '../../booking/dto/BookingDto';
-import { ServiceDto } from '../../service/dto/ServiceDto';
+import type { ServiceDto } from '../../service/dto/ServiceDto';
 import type { UserEntity } from '../user.entity';
 
 export class UserDto extends AbstractDto {
@@ -15,6 +14,9 @@ export class UserDto extends AbstractDto {
 
     @ApiPropertyOptional()
     email: string;
+
+    @ApiPropertyOptional()
+    password: string;
 
     @ApiPropertyOptional()
     bookings: BookingDto[];

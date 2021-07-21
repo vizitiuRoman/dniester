@@ -16,8 +16,13 @@ export class UserRegisterDto {
     @MinLength(6)
     readonly password: string;
 
-    @ApiProperty({ minLength: 6 })
+    @ApiProperty({ minLength: 3 })
     @IsString()
-    @MinLength(6)
-    readonly fullName: string;
+    @MinLength(3)
+    readonly name: string;
+
+    @ApiProperty({ minLength: 3 })
+    @IsString()
+    @MinLength(3)
+    readonly lastName: string;
 }

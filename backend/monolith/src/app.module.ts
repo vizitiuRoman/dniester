@@ -14,6 +14,7 @@ import { CompanyModule } from './modules/company/company.module';
 import { ReviewModule } from './modules/review/review.module';
 import { ServiceModule } from './modules/service/service.module';
 import { StaffModule } from './modules/staff/staff.module';
+import { UserAuthModule } from './modules/user-auth/user-auth.module';
 import { UserModule } from './modules/user/user.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 @Module({
     imports: [
         CompanyAuthModule,
+        UserAuthModule,
         CompanyModule,
         ServiceModule,
         StaffModule,

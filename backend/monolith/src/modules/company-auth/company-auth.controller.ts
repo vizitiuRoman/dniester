@@ -28,8 +28,8 @@ import { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
 import { LoginPayloadDto } from './dto/LoginPayloadDto';
 
-@Controller('company/auth')
-@ApiTags('company/auth')
+@Controller('auth/company')
+@ApiTags('auth/company')
 export class CompanyAuthController {
     constructor(
         public readonly companyService: CompanyService,
