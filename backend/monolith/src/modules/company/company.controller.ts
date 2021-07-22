@@ -11,7 +11,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RoleType } from '../../common/constants/role-type';
 import { PageDto } from '../../common/dto/PageDto';
 import { AuthCompany } from '../../decorators/auth-company.decorator';
-import { Auth, UUIDParam } from '../../decorators/http.decorators';
+import { CompanyAuth, UUIDParam } from '../../decorators/http.decorators';
 import { TranslationService } from '../../shared/services/translation.service';
 import { CompanyEntity } from './company.entity';
 import { CompanyService } from './company.service';
@@ -27,7 +27,7 @@ export class CompanyController {
     ) {}
 
     @Get('admin')
-    @Auth(RoleType.USER)
+    @CompanyAuth(RoleType.USER)
     @HttpCode(HttpStatus.OK)
     async admin(@AuthCompany() company: CompanyEntity): Promise<string> {
         const translation = await this.translationService.translate(
@@ -54,7 +54,7 @@ export class CompanyController {
     }
 
     @Get(':id')
-    @Auth(RoleType.USER)
+    @CompanyAuth(RoleType.USER)
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,

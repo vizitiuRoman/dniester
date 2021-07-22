@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthCompany } from '../../decorators/auth-company.decorator';
-import { Auth } from '../../decorators/http.decorators';
+import { CompanyAuth } from '../../decorators/http.decorators';
 import { CompanyEntity } from '../company/company.entity';
 import { BookingService } from './booking.service';
 import { BookingDto } from './dto/BookingDto';
@@ -13,7 +13,7 @@ export class BookingController {
     constructor(private bookingService: BookingService) {}
 
     @Get()
-    @Auth()
+    @CompanyAuth()
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,
