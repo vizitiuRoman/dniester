@@ -4,7 +4,6 @@ import type {
     NestInterceptor,
 } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
-
 import type { Observable } from 'rxjs';
 
 import type { UserEntity } from '../modules/user/user.entity';

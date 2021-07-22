@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthCompany } from '../../decorators/auth-company.decorator';
-import { CompanyAuth } from '../../decorators/http.decorators';
+import { CompanyAuth, UserAuth } from '../../decorators/http.decorators';
 import { CompanyEntity } from '../company/company.entity';
 import { ServiceDto } from './dto/ServiceDto';
 import { ServiceService } from './service.service';
@@ -13,6 +13,7 @@ export class ServiceController {
     constructor(private serviceService: ServiceService) {}
 
     @Get()
+    @UserAuth()
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
         status: HttpStatus.OK,
