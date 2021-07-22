@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { CompanyNotFoundException } from '../../exceptions/company-not-found.exception';
-import { UtilsService } from '../../providers/utils.service';
-import { ConfigService } from '../../shared/services/config.service';
-import type { CompanyEntity } from '../company/company.entity';
-import { CompanyService } from '../company/company.service';
-import type { CompanyDto } from '../company/dto/CompanyDto';
+import { CompanyNotFoundException } from '../../../exceptions/company-not-found.exception';
+import { UtilsService } from '../../../providers/utils.service';
+import { ConfigService } from '../../../shared/services/config.service';
+import type { CompanyEntity } from '../../company/company.entity';
+import { CompanyService } from '../../company/company.service';
+import type { CompanyDto } from '../../company/dto/CompanyDto';
 import type { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { TokenPayloadDto } from './dto/TokenPayloadDto';
 

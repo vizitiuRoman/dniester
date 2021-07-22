@@ -16,20 +16,20 @@ import {
     ApiTags,
 } from '@nestjs/swagger';
 
-import { AuthCompany } from '../../decorators/auth-company.decorator';
-import { ApiFile } from '../../decorators/swagger.schema';
-import { CompanyAuthGuard } from '../../guards/auth.guard';
-import { AuthCompanyInterceptor } from '../../interceptors/auth-company-interceptor.service';
-import { CompanyEntity } from '../company/company.entity';
-import { CompanyService } from '../company/company.service';
-import { CompanyDto } from '../company/dto/CompanyDto';
+import { AuthCompany } from '../../../decorators/auth-company.decorator';
+import { ApiFile } from '../../../decorators/swagger.schema';
+import { CompanyAuthGuard } from '../../../guards/auth.guard';
+import { AuthCompanyInterceptor } from '../../../interceptors/auth-company-interceptor.service';
+import { CompanyEntity } from '../../company/company.entity';
+import { CompanyService } from '../../company/company.service';
+import { CompanyDto } from '../../company/dto/CompanyDto';
 import { CompanyAuthService } from './company-auth.service';
 import { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
 import { LoginPayloadDto } from './dto/LoginPayloadDto';
 
-@Controller('auth/company')
-@ApiTags('auth/company')
+@Controller('admin/auth')
+@ApiTags('admin/auth')
 export class CompanyAuthController {
     constructor(
         public readonly companyService: CompanyService,
@@ -75,7 +75,7 @@ export class CompanyAuthController {
     @UseGuards(CompanyAuthGuard)
     @UseInterceptors(AuthCompanyInterceptor)
     @ApiBearerAuth()
-    @ApiOkResponse({ type: CompanyDto, description: 'current company info' })
+    @ApiOkResponse({ type: CompanyDto, description: 'current admin-company info' })
     getCurrentCompany(@AuthCompany() company: CompanyEntity) {
         return company.toDto();
     }
