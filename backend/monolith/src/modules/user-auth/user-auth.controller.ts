@@ -5,13 +5,11 @@ import {
     HttpCode,
     HttpStatus,
     Post,
-    UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthUser } from '../../decorators/auth-user.decorator';
-import { AuthGuard } from '../../guards/auth.guard';
 import { AuthUserInterceptor } from '../../interceptors/auth-user-interceptor.service';
 import { UserDto } from '../user/dto/UserDto';
 import { UserEntity } from '../user/user.entity';
@@ -57,7 +55,6 @@ export class UserAuthController {
 
     @Get('me')
     @HttpCode(HttpStatus.OK)
-    @UseGuards(AuthGuard)
     @UseInterceptors(AuthUserInterceptor)
     @ApiBearerAuth()
     @ApiOkResponse({ type: UserDto, description: 'current user info' })

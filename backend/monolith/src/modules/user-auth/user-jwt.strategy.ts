@@ -3,30 +3,31 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { ConfigService } from '../../shared/services/config.service';
-import { CompanyService } from '../company/company.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class UserJwtStrategy extends PassportStrategy(Strategy, 'user_jwt') {
     constructor(
         public readonly configService: ConfigService,
-        public readonly companyService: CompanyService,
+        public readonly userService: UserService,
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: configService.get('JWT_SECRET_KEY'),
+            ignoreExpiration: false,
+            secretOrKey: configService.get('JWT_USER_SECRET_KEY'),
         });
     }
 
-    async validate({ iat, exp, id: companyId }) {
+    async validate({ iat, exp, id: userId }) {
         const timeDiff = exp - iat;
         if (timeDiff <= 0) {
             throw new UnauthorizedException();
         }
-        const company = await this.companyService.findOne(companyId);
+        const user = await this.userService.findOne(userId);
 
-        if (!company) {
+        if (!user) {
             throw new UnauthorizedException();
         }
-        return company;
+        return user;
     }
 }

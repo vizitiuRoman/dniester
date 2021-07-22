@@ -18,7 +18,7 @@ import {
 
 import { AuthCompany } from '../../decorators/auth-company.decorator';
 import { ApiFile } from '../../decorators/swagger.schema';
-import { AuthGuard } from '../../guards/auth.guard';
+import { CompanyAuthGuard } from '../../guards/auth.guard';
 import { AuthCompanyInterceptor } from '../../interceptors/auth-company-interceptor.service';
 import { CompanyEntity } from '../company/company.entity';
 import { CompanyService } from '../company/company.service';
@@ -61,17 +61,18 @@ export class CompanyAuthController {
     @UseInterceptors(FileInterceptor('avatar'))
     async companyRegister(
         @Body() companyRegisterDto: CompanyRegisterDto,
-    ): Promise<CompanyDto> {
+    ): Promise<LoginPayloadDto> {
         const createdCompany = await this.companyService.createCompany(
             companyRegisterDto,
         );
 
-        return createdCompany.toDto();
+        const token = await this.authService.createToken(createdCompany);
+        return new LoginPayloadDto(createdCompany.toDto(), token);
     }
 
     @Get('me')
     @HttpCode(HttpStatus.OK)
-    @UseGuards(AuthGuard)
+    @UseGuards(CompanyAuthGuard)
     @UseInterceptors(AuthCompanyInterceptor)
     @ApiBearerAuth()
     @ApiOkResponse({ type: CompanyDto, description: 'current company info' })

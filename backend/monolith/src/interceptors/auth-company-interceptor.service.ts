@@ -14,7 +14,7 @@ export class AuthCompanyInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const request = context.switchToHttp().getRequest();
 
-        const company = <CompanyEntity>request.company;
+        const company = <CompanyEntity>request.user;
         ContextService.setAuthCompany(company);
 
         return next.handle();

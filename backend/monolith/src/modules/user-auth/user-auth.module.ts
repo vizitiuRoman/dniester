@@ -2,19 +2,19 @@ import { forwardRef, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 
 import { UserModule } from '../user/user.module';
-import { JwtStrategy } from './jwt.strategy';
 import { UserAuthController } from './user-auth.controller';
 import { UserAuthService } from './user-auth.service';
+import { UserJwtStrategy } from './user-jwt.strategy';
 
 @Module({
     imports: [
         forwardRef(() => UserModule),
-        PassportModule.register({ defaultStrategy: 'jwt' }),
+        PassportModule.register({ defaultStrategy: 'user_jwt' }),
     ],
     controllers: [UserAuthController],
-    providers: [UserAuthService, JwtStrategy],
+    providers: [UserAuthService, UserJwtStrategy],
     exports: [
-        PassportModule.register({ defaultStrategy: 'jwt' }),
+        PassportModule.register({ defaultStrategy: 'user_jwt' }),
         UserAuthService,
     ],
 })
