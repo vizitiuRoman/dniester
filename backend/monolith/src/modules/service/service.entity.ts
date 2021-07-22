@@ -1,11 +1,11 @@
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 
-import { CompanyEntity } from '../company/company.entity';
 import { AbstractEntity } from '../../common/abstract.entity';
-import { UserEntity } from '../user/user.entity';
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
+import { CompanyEntity } from '../company/company.entity';
 import { StaffEntity } from '../staff/staff.entity';
+import { UserEntity } from '../user/user.entity';
 import { ServiceDto } from './dto/ServiceDto';
 
 @Entity({ name: 'services' })

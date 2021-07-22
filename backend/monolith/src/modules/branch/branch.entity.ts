@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
-import { ServiceEntity } from '../service/service.entity';
 import { AbstractEntity } from '../../common/abstract.entity';
 import { CompanyEntity } from '../company/company.entity';
 import { ReviewEntity } from '../review/review.entity';
+import { ServiceEntity } from '../service/service.entity';
 import { StaffEntity } from '../staff/staff.entity';
 import { BranchDto } from './dto/BranchDto';
 
