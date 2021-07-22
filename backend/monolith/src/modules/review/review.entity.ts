@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { AbstractEntity } from '../../common/abstract.entity';
+import { BranchEntity } from '../branch/branch.entity';
 import { CompanyEntity } from '../company/company.entity';
-import { ServiceEntity } from '../service/service.entity';
 import { UserEntity } from '../user/user.entity';
 import { ReviewDto } from './dto/ReviewDto';
 
@@ -11,8 +11,8 @@ export class ReviewEntity extends AbstractEntity<ReviewDto> {
     @Column({ nullable: true })
     name: string;
 
-    @ManyToOne(() => ServiceEntity, (svc) => svc.reviews)
-    service: ServiceEntity[];
+    @ManyToOne(() => BranchEntity, (svc) => svc.reviews)
+    branch: BranchEntity[];
 
     @ManyToOne(() => UserEntity, (svc) => svc.reviews)
     user: UserEntity;

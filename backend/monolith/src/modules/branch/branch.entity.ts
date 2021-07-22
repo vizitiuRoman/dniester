@@ -1,7 +1,9 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
+import { ServiceEntity } from '../service/service.entity';
 import { AbstractEntity } from '../../common/abstract.entity';
 import { CompanyEntity } from '../company/company.entity';
+import { ReviewEntity } from '../review/review.entity';
 import { StaffEntity } from '../staff/staff.entity';
 import { BranchDto } from './dto/BranchDto';
 
@@ -12,6 +14,12 @@ export class BranchEntity extends AbstractEntity<BranchDto> {
 
     @OneToMany(() => StaffEntity, (svc) => svc.branch)
     staffs: StaffEntity[];
+
+    @OneToMany(() => ReviewEntity, (svc) => svc.branch)
+    reviews: ReviewEntity[];
+
+    @OneToMany(() => ServiceEntity, (svc) => svc.branch)
+    services: ServiceEntity[];
 
     @ManyToOne(() => CompanyEntity, (svc) => svc.branches)
     company: CompanyEntity[];

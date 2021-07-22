@@ -5,6 +5,8 @@ export class createRelations1626341752319 implements MigrationInterface {
         await queryRunner.query(`
             ALTER TABLE "services" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id");
 
+            ALTER TABLE "services" ADD FOREIGN KEY ("branch_id") REFERENCES "branches" ("id");
+
             ALTER TABLE "bookings" ADD FOREIGN KEY ("service_id") REFERENCES "services" ("id");
 
             ALTER TABLE "bookings" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
@@ -25,9 +27,7 @@ export class createRelations1626341752319 implements MigrationInterface {
 
             ALTER TABLE "branches" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id");
 
-            ALTER TABLE "branches" ADD FOREIGN KEY ("service_id") REFERENCES "services" ("id");
-
-            ALTER TABLE "reviews" ADD FOREIGN KEY ("service_id") REFERENCES "services" ("id");
+            ALTER TABLE "reviews" ADD FOREIGN KEY ("branch_id") REFERENCES "branches" ("id");
 
             ALTER TABLE "reviews" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id");
 
