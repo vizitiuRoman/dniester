@@ -7,32 +7,45 @@ import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
 import path from 'path';
 
 import { contextMiddleware } from './middlewares';
-import { CmpCompanyModule } from './modules/company-module/cmp-company/cmp-company.module';
-import { CmpAuthModule } from './modules/company-module/cmp-auth/cmp-auth.module';
-import { BookingModule } from './modules/booking/booking.module';
-import { BranchModule } from './modules/branch/branch.module';
-import { CompanyModule } from './modules/company/company.module';
-import { ReviewModule } from './modules/review/review.module';
-import { ServiceModule } from './modules/service/service.module';
-import { StaffModule } from './modules/staff/staff.module';
-import { UserModule } from './modules/user/user.module';
-import { UserAuthModule } from './modules/user-auth/user-auth.module';
+import { AppBookingModule } from './modules/app/app-booking/app-booking.module';
+import { AppBranchModule } from './modules/app/app-branch/app-branch.module';
+import { AppCompanyModule } from './modules/app/app-company/app-company.module';
+import { AppReviewModule } from './modules/app/app-review/app-review.module';
+import { AppUserModule } from './modules/app/app-user/app-user.module';
+import { AppUserAuthModule } from './modules/app/app-user-auth/app-user-auth.module';
+import { CmpAuthModule } from './modules/company/cmp-auth/cmp-auth.module';
+import { CmpCompanyModule } from './modules/company/cmp-company/cmp-company.module';
+import { CmpServiceModule } from './modules/company/cmp-service/cmp-service.module';
+import { CmpStaffModule } from './modules/company/cmp-staff/cmp-staff.module';
+import { BookingModule } from './modules/general/booking/booking.module';
+import { BranchModule } from './modules/general/branch/branch.module';
+import { CompanyModule } from './modules/general/company/company.module';
+import { ReviewModule } from './modules/general/review/review.module';
+import { ServiceModule } from './modules/general/service/service.module';
+import { StaffModule } from './modules/general/staff/staff.module';
+import { UserModule } from './modules/general/user/user.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
 
 @Module({
     imports: [
-        UserAuthModule,
-        CmpAuthModule,
-        CompanyModule,
-        ServiceModule,
-        CmpCompanyModule,
-        StaffModule,
-        ReviewModule,
-        BranchModule,
         BookingModule,
+        BranchModule,
+        CompanyModule,
+        ReviewModule,
+        ServiceModule,
         StaffModule,
         UserModule,
+        CmpAuthModule,
+        CmpCompanyModule,
+        CmpServiceModule,
+        CmpStaffModule,
+        AppBookingModule,
+        AppBranchModule,
+        AppCompanyModule,
+        AppReviewModule,
+        AppUserModule,
+        AppUserAuthModule,
         TypeOrmModule.forRootAsync({
             imports: [SharedModule],
             useFactory: (configService: ConfigService) =>
