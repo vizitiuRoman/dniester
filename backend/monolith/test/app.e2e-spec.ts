@@ -4,7 +4,7 @@ import request from 'supertest';
 
 import { AppModule } from '../src/app.module';
 
-describe('UserAuthController (e2e)', () => {
+describe('AppUserAuthController (e2e)', () => {
     let app;
 
     beforeEach(async () => {

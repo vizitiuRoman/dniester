@@ -6,7 +6,7 @@ import type {
 import { Injectable } from '@nestjs/common';
 import type { Observable } from 'rxjs';
 
-import type { CompanyEntity } from '../modules/company/company.entity';
+import type { CompanyEntity } from '../modules/general/company/company.entity';
 import { ContextService } from '../providers/context.service';
 
 @Injectable()

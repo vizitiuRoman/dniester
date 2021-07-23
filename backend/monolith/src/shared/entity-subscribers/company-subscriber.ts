@@ -5,7 +5,7 @@ import type {
 } from 'typeorm';
 import { EventSubscriber } from 'typeorm';
 
-import { CompanyEntity } from '../../modules/company/company.entity';
+import { CompanyEntity } from '../../modules/general/company/company.entity';
 import { UtilsService } from '../../providers/utils.service';
 
 @EventSubscriber()
