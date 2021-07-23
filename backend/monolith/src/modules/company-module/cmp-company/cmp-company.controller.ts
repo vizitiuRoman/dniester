@@ -1,12 +1,12 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { AdminCompanyService } from './admin-company.service';
+import { CmpCompanyService } from './cmp-company.service';
 
-@Controller('admin/companies')
-@ApiTags('admin/companies')
-export class AdminCompanyController {
-    constructor(private companyService: AdminCompanyService) {}
+@Controller('company/companies')
+@ApiTags('company/companies')
+export class CmpCompanyController {
+    constructor(private companyService: CmpCompanyService) {}
 
     @Get('')
     @HttpCode(HttpStatus.OK)

@@ -82,8 +82,8 @@ This project includes generators to speed up common development tasks. Commands 
 # Install nest-cli globally
 yarn global add @nestjs/cli
 
-# Generate a new service
-nest generate service users
+# Generate a new company-module-service
+nest generate company-module-service users
 
 # Generate a new class
 nest g class users

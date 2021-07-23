@@ -19,7 +19,7 @@ export class UserService {
     }
 
     /**
-     * Find single admin-company
+     * Find single company-module-company
      */
     public findOne(findData: FindConditions<UserEntity>): Promise<UserEntity> {
         return this.userRepository.findOne(findData);

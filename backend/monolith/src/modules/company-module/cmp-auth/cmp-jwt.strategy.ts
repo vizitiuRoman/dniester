@@ -6,7 +6,7 @@ import { ConfigService } from '../../../shared/services/config.service';
 import { CompanyService } from '../../company/company.service';
 
 @Injectable()
-export class CompanyJwtStrategy extends PassportStrategy(
+export class CmpJwtStrategy extends PassportStrategy(
     Strategy,
     'company_jwt',
 ) {

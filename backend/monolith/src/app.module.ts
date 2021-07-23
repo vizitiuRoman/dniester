@@ -7,11 +7,11 @@ import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
 import path from 'path';
 
 import { contextMiddleware } from './middlewares';
-import { AdminCompanyModule } from './modules/admin/admin-company/admin-company.module';
+import { CmpCompanyModule } from './modules/company-module/cmp-company/cmp-company.module';
+import { CmpAuthModule } from './modules/company-module/cmp-auth/cmp-auth.module';
 import { BookingModule } from './modules/booking/booking.module';
 import { BranchModule } from './modules/branch/branch.module';
 import { CompanyModule } from './modules/company/company.module';
-import { CompanyAuthModule } from './modules/admin/company-auth/company-auth.module';
 import { ReviewModule } from './modules/review/review.module';
 import { ServiceModule } from './modules/service/service.module';
 import { StaffModule } from './modules/staff/staff.module';
@@ -23,10 +23,10 @@ import { SharedModule } from './shared/shared.module';
 @Module({
     imports: [
         UserAuthModule,
-        CompanyAuthModule,
+        CmpAuthModule,
         CompanyModule,
         ServiceModule,
-        AdminCompanyModule,
+        CmpCompanyModule,
         StaffModule,
         ReviewModule,
         BranchModule,

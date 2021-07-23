@@ -31,7 +31,7 @@ export class CompanyController {
     @HttpCode(HttpStatus.OK)
     async admin(@AuthCompany() company: CompanyEntity): Promise<string> {
         const translation = await this.translationService.translate(
-            'keywords.admin',
+            'keywords.company-module',
             {
                 lang: 'en',
             },

@@ -5,7 +5,7 @@ import type { CompanyEntity } from '../../company/company.entity';
 import { CompanyRepository } from '../../company/company.repository';
 
 @Injectable()
-export class AdminCompanyService {
+export class CmpCompanyService {
     constructor(public readonly companyRepository: CompanyRepository) {}
 
     public findOne(
@@ -19,7 +19,7 @@ export class AdminCompanyService {
             'company',
         );
 
-        queryBuilder.where('admin-company.id = :companyId', { companyId });
+        queryBuilder.where('company-module-company.id = :companyId', { companyId });
 
         const companyEntity = await queryBuilder.getOne();
 

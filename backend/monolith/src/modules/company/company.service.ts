@@ -4,7 +4,7 @@ import type { FindConditions } from 'typeorm';
 import type { PageDto } from '../../common/dto/PageDto';
 import { AwsS3Service } from '../../shared/services/aws-s3.service';
 import { ValidatorService } from '../../shared/services/validator.service';
-import type { CompanyRegisterDto } from '../admin/company-auth/dto/CompanyRegisterDto';
+import type { CompanyRegisterDto } from '../company-module/cmp-auth/dto/CompanyRegisterDto';
 import type { CompanyEntity } from './company.entity';
 import { CompanyRepository } from './company.repository';
 import type { CompaniesPageOptionsDto } from './dto/CompaniesPageOptionsDto';
@@ -19,7 +19,7 @@ export class CompanyService {
     ) {}
 
     /**
-     * Find single admin-company
+     * Find single company
      */
     public findOne(
         findData: FindConditions<CompanyEntity>,
@@ -35,12 +35,12 @@ export class CompanyService {
         );
 
         if (options.email) {
-            queryBuilder.orWhere('admin-company.email = :email', {
+            queryBuilder.orWhere('company-module-company.email = :email', {
                 email: options.email,
             });
         }
         if (options.companyname) {
-            queryBuilder.orWhere('admin-company.companyname = :companyname', {
+            queryBuilder.orWhere('company-module-company.companyname = :companyname', {
                 companyname: options.companyname,
             });
         }
@@ -74,7 +74,7 @@ export class CompanyService {
             'company',
         );
 
-        queryBuilder.where('admin-company.id = :companyId', { companyId });
+        queryBuilder.where('company-module-company.id = :companyId', { companyId });
 
         const companyEntity = await queryBuilder.getOne();
 

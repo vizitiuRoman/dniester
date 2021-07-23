@@ -11,7 +11,7 @@ import type { CompanyLoginDto } from './dto/CompanyLoginDto';
 import { TokenPayloadDto } from './dto/TokenPayloadDto';
 
 @Injectable()
-export class CompanyAuthService {
+export class CmpAuthService {
     constructor(
         public readonly jwtService: JwtService,
         public readonly configService: ConfigService,
