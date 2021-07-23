@@ -1,16 +1,25 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import { CompanyEntity } from '../company/company.entity';
 import { ServiceEntity } from '../service/service.entity';
 import { StaffEntity } from '../staff/staff.entity';
 import { UserEntity } from '../user/user.entity';
-import { CompanyEntity } from '../company/company.entity';
 import { BookingDto } from './dto/BookingDto';
 
 @Entity({ name: 'bookings' })
 export class BookingEntity extends AbstractEntity<BookingDto> {
     @Column({ nullable: false })
     companyId: string;
+
+    @Column({ nullable: false })
+    staffId: string;
+
+    @Column({ nullable: false })
+    userId: string;
+
+    @Column({ nullable: false })
+    serviceId: string;
 
     @ManyToOne(() => CompanyEntity, (svc) => svc.bookings)
     company: CompanyEntity;

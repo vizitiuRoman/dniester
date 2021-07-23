@@ -14,6 +14,7 @@ import { AppReviewModule } from './modules/app/app-review/app-review.module';
 import { AppUserModule } from './modules/app/app-user/app-user.module';
 import { AppUserAuthModule } from './modules/app/app-user-auth/app-user-auth.module';
 import { CmpAuthModule } from './modules/company/cmp-auth/cmp-auth.module';
+import { CmpBookingModule } from './modules/company/cmp-booking/cmp-booking.module';
 import { CmpCompanyModule } from './modules/company/cmp-company/cmp-company.module';
 import { CmpServiceModule } from './modules/company/cmp-service/cmp-service.module';
 import { CmpStaffModule } from './modules/company/cmp-staff/cmp-staff.module';
@@ -36,6 +37,7 @@ import { SharedModule } from './shared/shared.module';
         ServiceModule,
         StaffModule,
         UserModule,
+        CmpBookingModule,
         CmpAuthModule,
         CmpCompanyModule,
         CmpServiceModule,
