@@ -1,16 +1,89 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Post,
+    Put,
+} from '@nestjs/common';
+import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+import { AuthCompany } from '../../../decorators/auth-company.decorator';
+import { CompanyAuth, UUIDParam } from '../../../decorators/http.decorators';
+import { CompanyEntity } from '../../general/company/company.entity';
+import { CompanyDto } from '../../general/company/dto/CompanyDto';
 import { CmpCompanyService } from './cmp-company.service';
+import { CreateCmpCompanyDto } from './dto/CreateCmpCompanyDto';
+import { UpdateCmpCompanyDto } from './dto/UpdateCmpCompanyDto';
 
 @Controller('company/companies')
 @ApiTags('company/companies')
 export class CmpCompanyController {
     constructor(private companyService: CmpCompanyService) {}
 
-    @Get('')
+    @Post()
+    @CompanyAuth()
     @HttpCode(HttpStatus.OK)
-    async admin(): Promise<string> {
-        return 'OQWEOQWE';
+    @ApiOkResponse({
+        type: CompanyDto,
+        description: 'Successfully created company',
+    })
+    createCompany(@Body() body: CreateCmpCompanyDto): Promise<CompanyDto> {
+        return this.companyService.createCompany(body);
+    }
+
+    @Put()
+    @CompanyAuth()
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({
+        type: CompanyDto,
+        description: 'Successfully updated company',
+    })
+    updateCompany(@Body() body: UpdateCmpCompanyDto): Promise<CompanyDto> {
+        return this.companyService.updateCompany(body);
+    }
+
+    @Get()
+    @CompanyAuth()
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Get companies list',
+        type: CompanyDto,
+    })
+    getCompanies(@AuthCompany() company: CompanyEntity): Promise<CompanyDto[]> {
+        return this.companyService.getCompanies(company.id);
+    }
+
+    @Get(':id')
+    @CompanyAuth()
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Get company',
+        type: CompanyDto,
+    })
+    getCompany(
+        @AuthCompany() company: CompanyEntity,
+        @UUIDParam('id') companyId: string,
+    ): Promise<CompanyDto> {
+        return this.companyService.getCompany(companyId);
+    }
+
+    @Delete(':id')
+    @CompanyAuth()
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Delete company',
+        type: CompanyDto,
+    })
+    deleteCompanyCompany(
+        @AuthCompany() company: CompanyEntity,
+        @UUIDParam('id') companyId: string,
+    ): Promise<CompanyDto> {
+        return this.companyService.getCompany(companyId);
     }
 }

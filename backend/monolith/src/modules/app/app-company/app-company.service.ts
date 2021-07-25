@@ -4,7 +4,7 @@ import type { FindConditions } from 'typeorm';
 import type { PageDto } from '../../../common/dto/PageDto';
 import { AwsS3Service } from '../../../shared/services/aws-s3.service';
 import { ValidatorService } from '../../../shared/services/validator.service';
-import type { CompanyRegisterDto } from '../../company/cmp-auth/dto/CompanyRegisterDto';
+import type { CreateCmpCompanyDto } from '../../company/cmp-company/dto/CreateCmpCompanyDto';
 import type { CompanyEntity } from '../../general/company/company.entity';
 import { CompanyRepository } from '../../general/company/company.repository';
 import type { CompaniesPageOptionsDto } from '../../general/company/dto/CompaniesPageOptionsDto';
@@ -55,7 +55,7 @@ export class AppCompanyService {
     }
 
     public async createCompany(
-        companyRegisterDto: CompanyRegisterDto,
+        companyRegisterDto: CreateCmpCompanyDto,
     ): Promise<CompanyEntity> {
         const company = this.companyRepository.create(companyRegisterDto);
 

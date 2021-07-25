@@ -23,9 +23,9 @@ import { AuthCompanyInterceptor } from '../../../interceptors/auth-company-inter
 import { CompanyEntity } from '../../general/company/company.entity';
 import { CompanyDto } from '../../general/company/dto/CompanyDto';
 import { CmpCompanyService } from '../cmp-company/cmp-company.service';
+import { CreateCmpCompanyDto } from '../cmp-company/dto/CreateCmpCompanyDto';
 import { CmpAuthService } from './cmp-auth.service';
 import { CompanyLoginDto } from './dto/CompanyLoginDto';
-import { CompanyRegisterDto } from './dto/CompanyRegisterDto';
 import { LoginPayloadDto } from './dto/LoginPayloadDto';
 
 @Controller('company/auth')
@@ -60,14 +60,14 @@ export class CmpAuthController {
     @ApiFile([{ name: 'avatar' }])
     @UseInterceptors(FileInterceptor('avatar'))
     async companyRegister(
-        @Body() companyRegisterDto: CompanyRegisterDto,
+        @Body() companyRegisterDto: CreateCmpCompanyDto,
     ): Promise<LoginPayloadDto> {
         const createdCompany = await this.cmpCompanyService.createCompany(
             companyRegisterDto,
         );
 
         const token = await this.authService.createToken(createdCompany);
-        return new LoginPayloadDto(createdCompany.toDto(), token);
+        return new LoginPayloadDto(createdCompany, token);
     }
 
     @Get('me')
