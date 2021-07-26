@@ -11,6 +11,7 @@ import { AppBookingModule } from './modules/app/app-booking/app-booking.module';
 import { AppBranchModule } from './modules/app/app-branch/app-branch.module';
 import { AppCompanyModule } from './modules/app/app-company/app-company.module';
 import { AppReviewModule } from './modules/app/app-review/app-review.module';
+import { AppServiceModule } from './modules/app/app-service/app-service.module';
 import { AppUserModule } from './modules/app/app-user/app-user.module';
 import { AppUserAuthModule } from './modules/app/app-user-auth/app-user-auth.module';
 import { CmpAuthModule } from './modules/company/cmp-auth/cmp-auth.module';
@@ -45,6 +46,7 @@ import { SharedModule } from './shared/shared.module';
         AppBookingModule,
         AppBranchModule,
         AppCompanyModule,
+        AppServiceModule,
         AppReviewModule,
         AppUserModule,
         AppUserAuthModule,
