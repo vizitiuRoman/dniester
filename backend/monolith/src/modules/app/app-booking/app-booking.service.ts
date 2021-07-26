@@ -1,32 +1,61 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { BookingRepository } from '../../general/booking/booking.repository';
 import type { BookingDto } from '../../general/booking/dto/BookingDto';
+import type { CreateBookingDto } from './dto/CreateBookingDto';
 
 @Injectable()
 export class AppBookingService {
     constructor(private readonly bookingRepository: BookingRepository) {}
 
-    async getBookings(): Promise<BookingDto[]> {
-        const bookings = await this.bookingRepository.find();
-        return bookings.toDtos();
+    public async createBooking(
+        createBookingDto: CreateBookingDto,
+    ): Promise<BookingDto> {
+        try {
+            const booking = this.bookingRepository.create(createBookingDto);
+            return await this.bookingRepository.save(booking);
+        } catch (e) {
+            Logger.error('[createBooking] error', e, AppBookingService.name);
+        }
     }
 
-    async getBookingsByCompany(companyId: string): Promise<BookingDto[]> {
-        const bookings = await this.bookingRepository.find({
-            where: {
-                companyId,
-            },
-        });
-        return bookings.toDtos();
+    public async getBookingsByCompany(
+        companyId: string,
+    ): Promise<BookingDto[]> {
+        try {
+            return (
+                await this.bookingRepository.find({
+                    where: {
+                        companyId,
+                    },
+                })
+            ).toDtos();
+        } catch (e) {
+            Logger.error(
+                '[getBookingsByCompany] error',
+                e,
+                AppBookingService.name,
+            );
+        }
     }
 
-    async getBookingsByService(serviceId: string): Promise<BookingDto[]> {
-        const bookings = await this.bookingRepository.find({
-            where: {
-                serviceId,
-            },
-        });
-        return bookings.toDtos();
+    public async getBookingsByService(
+        serviceId: string,
+    ): Promise<BookingDto[]> {
+        try {
+            return (
+                await this.bookingRepository.find({
+                    where: {
+                        serviceId,
+                    },
+                })
+            ).toDtos();
+        } catch (e) {
+            Logger.error(
+                '[getBookingsByService] error',
+                e,
+                AppBookingService.name,
+            );
+        }
     }
 }
