@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import { IServiceCalendarSettings } from '../../../interfaces/IServiceCalendarSettings';
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
 import { CompanyEntity } from '../company/company.entity';
@@ -25,6 +26,13 @@ export class ServiceEntity extends AbstractEntity<ServiceDto> {
 
     @ManyToOne(() => CompanyEntity, (svc) => svc.services)
     company: CompanyEntity;
+
+    @Column({
+        nullable: false,
+        type: 'jsonb',
+        default: '{"start": "","end": ""}, "interval": null,',
+    })
+    calendarSettings: IServiceCalendarSettings;
 
     @ManyToMany(() => BranchEntity, (svc) => svc.services)
     @JoinTable({

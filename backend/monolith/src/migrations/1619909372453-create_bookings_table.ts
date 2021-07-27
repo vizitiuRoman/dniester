@@ -9,6 +9,8 @@ export class createBookingsTable1619909372453 implements MigrationInterface {
                 "service_id"    uuid              NOT NULL,
                 "company_id"    uuid              NOT NULL,
                 "staff_id"      uuid              NOT NULL,
+                "start"         TIMESTAMP         NOT NULL,
+                "end"           TIMESTAMP         NOT NULL,
                 "user_id"       uuid              NOT NULL,
                 "created_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "updated_at"    TIMESTAMP         NOT NULL DEFAULT now(),

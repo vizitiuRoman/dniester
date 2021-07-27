@@ -16,6 +16,12 @@ export class BookingEntity extends AbstractEntity<BookingDto> {
     staffId: string;
 
     @Column({ nullable: false })
+    start: Date;
+
+    @Column({ nullable: false })
+    end: Date;
+
+    @Column({ nullable: false })
     userId: string;
 
     @Column({ nullable: false })

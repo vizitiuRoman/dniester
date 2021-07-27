@@ -1,7 +1,15 @@
 // import { Geometry } from 'geojson';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    ManyToOne,
+    OneToMany,
+} from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import { IBranchCalendarSettings } from '../../../interfaces/IBranchCalendarSettings';
 import { CompanyEntity } from '../company/company.entity';
 import { ReviewEntity } from '../review/review.entity';
 import { ServiceEntity } from '../service/service.entity';
@@ -12,7 +20,15 @@ import { BranchDto } from './dto/BranchDto';
 export class BranchEntity extends AbstractEntity<BranchDto> {
     @Column({ nullable: true })
     name: string;
-    //
+
+    @Column({
+        nullable: false,
+        type: 'jsonb',
+        default:
+            '{"calendar": {"start": "","end": ""},"currentView": "","firstDayOfWeek": null}',
+    })
+    calendarSettings: IBranchCalendarSettings;
+
     // @Column()
     // location: Geometry;
 
