@@ -13,7 +13,7 @@ export class AppBookingService {
     ): Promise<BookingDto> {
         try {
             const booking = this.bookingRepository.create(createBookingDto);
-            return await this.bookingRepository.save(booking);
+            return (await this.bookingRepository.save(booking)).toDto();
         } catch (e) {
             Logger.error('[createBooking] error', e, AppBookingService.name);
         }

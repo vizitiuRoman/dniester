@@ -24,9 +24,9 @@ export class AppServiceController {
         description: 'Get services list',
         type: ServiceDto,
     })
-    getServices(@AuthUser() user: UserEntity): Promise<ServiceDto[]> {
-        return this.appServiceService.getServices(user.id, {
-            relations: ['staffs', 'branch', 'bookings'],
+    getServices(): Promise<ServiceDto[]> {
+        return this.appServiceService.getServices({
+            relations: ['branches'],
         });
     }
 

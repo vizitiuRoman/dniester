@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+// import { Geometry } from 'geojson';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
 import { CompanyEntity } from '../company/company.entity';
@@ -11,6 +12,9 @@ import { BranchDto } from './dto/BranchDto';
 export class BranchEntity extends AbstractEntity<BranchDto> {
     @Column({ nullable: true })
     name: string;
+    //
+    // @Column()
+    // location: Geometry;
 
     @OneToMany(() => StaffEntity, (svc) => svc.branch)
     staffs: StaffEntity[];
@@ -18,7 +22,12 @@ export class BranchEntity extends AbstractEntity<BranchDto> {
     @OneToMany(() => ReviewEntity, (svc) => svc.branch)
     reviews: ReviewEntity[];
 
-    @OneToMany(() => ServiceEntity, (svc) => svc.branch)
+    @ManyToMany(() => ServiceEntity, (svc) => svc.branches)
+    @JoinTable({
+        name: 'services_branches',
+        joinColumns: [{ name: 'branch_id' }],
+        inverseJoinColumns: [{ name: 'service_id' }],
+    })
     services: ServiceEntity[];
 
     @ManyToOne(() => CompanyEntity, (svc) => svc.branches)

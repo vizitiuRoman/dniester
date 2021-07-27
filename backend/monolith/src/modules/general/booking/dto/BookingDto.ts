@@ -10,6 +10,6 @@ export class BookingDto extends AbstractDto {
 
     constructor(booking: BookingEntity) {
         super(booking);
-        this.user = booking.user;
+        this.user = booking.user.toDto();
     }
 }

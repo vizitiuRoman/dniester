@@ -1,14 +1,14 @@
 import type { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class createFavoritesUserServicesTable1626341352887
+export class createServicesBranchesTable1626341628000
     implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE "favorites_user_services" (
+            CREATE TABLE "services_branches" (
                 "id"            uuid              NOT NULL DEFAULT uuid_generate_v4(),
-                "user_id"       uuid              NOT NULL,
+                "branch_id"     uuid              NOT NULL,
                 "service_id"    uuid              NOT NULL,
-                CONSTRAINT "PK_a3ffb1cf16421b9fc6f197b7433" PRIMARY KEY ("id")
+                CONSTRAINT "PK_a3fqbdqf164q4zcsc6fwq7b7433" PRIMARY KEY ("id")
             );
         `);
     }

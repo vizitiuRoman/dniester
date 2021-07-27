@@ -21,18 +21,10 @@ export class AppServiceService {
     }
 
     public async getServices(
-        companyId: string,
         options?: FindManyOptions<ServiceEntity>,
     ): Promise<ServiceDto[]> {
         try {
-            return (
-                await this.serviceRepository.find({
-                    ...options,
-                    where: {
-                        companyId,
-                    },
-                })
-            ).toDtos();
+            return (await this.serviceRepository.find(options)).toDtos();
         } catch (e) {
             Logger.error('[getServices] error', e, AppServiceService.name);
         }

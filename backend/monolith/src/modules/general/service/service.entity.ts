@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    ManyToOne,
+    OneToMany,
+} from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
 import { BookingEntity } from '../booking/booking.entity';
@@ -19,8 +26,13 @@ export class ServiceEntity extends AbstractEntity<ServiceDto> {
     @ManyToOne(() => CompanyEntity, (svc) => svc.services)
     company: CompanyEntity;
 
-    @ManyToOne(() => BranchEntity, (svc) => svc.services)
-    branch: BranchEntity;
+    @ManyToMany(() => BranchEntity, (svc) => svc.services)
+    @JoinTable({
+        name: 'services_branches',
+        joinColumns: [{ name: 'service_id' }],
+        inverseJoinColumns: [{ name: 'branch_id' }],
+    })
+    branches: BranchEntity[];
 
     @ManyToMany(() => UserEntity, (svc) => svc.favoritesUserServices)
     users: UserEntity;
