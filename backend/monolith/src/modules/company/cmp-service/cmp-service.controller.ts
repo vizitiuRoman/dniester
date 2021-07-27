@@ -57,7 +57,7 @@ export class CmpServiceController {
         @AuthCompany() company: CompanyEntity,
     ): Promise<ServiceDto[]> {
         return this.cmpServiceService.getCompanyServices(company.id, {
-            relations: ['staffs', 'branch', 'bookings'],
+            relations: ['staffs', 'bookings'],
         });
     }
 
