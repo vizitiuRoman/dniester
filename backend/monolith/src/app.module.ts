@@ -60,7 +60,7 @@ import { SharedModule } from './shared/shared.module';
             useFactory: (configService: ConfigService) => ({
                 fallbackLanguage: configService.fallbackLanguage,
                 parserOptions: {
-                    path: path.join(__dirname, '/i18n/'),
+                    path: path.join(__dirname, '/shared/i18n/'),
                     watch: configService.isDevelopment,
                 },
             }),
