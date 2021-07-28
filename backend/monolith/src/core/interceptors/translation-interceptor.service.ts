@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import type { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { TranslationService } from '../shared/services/translation.service';
+import { TranslationService } from '../../shared/services/translation.service';
 
 @Injectable()
 export class TranslationInterceptor implements NestInterceptor {

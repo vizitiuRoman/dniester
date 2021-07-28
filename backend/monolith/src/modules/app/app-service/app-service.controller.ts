@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthUser } from '../../../decorators/auth-user.decorator';
-import { UserAuth, UUIDParam } from '../../../decorators/http.decorators';
+import { AuthUser } from '../../../core/decorators/auth-user.decorator';
+import { UserAuth, UUIDParam } from '../../../core/decorators/http.decorators';
 import { ServiceDto } from '../../general/service/dto/ServiceDto';
 import { UserEntity } from '../../general/user/user.entity';
 import { AppUserService } from '../app-user/app-user.service';

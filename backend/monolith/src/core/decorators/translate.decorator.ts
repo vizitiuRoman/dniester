@@ -1,4 +1,4 @@
-import type { ITranslationDecoratorInterface } from '../interfaces/ITranslationDecoratorInterface';
+import type { ITranslationDecoratorInterface } from '../../shared/interfaces/ITranslationDecoratorInterface';
 
 export const TRANSLATION_DECORATOR_KEY = 'custom:translate';
 

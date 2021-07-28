@@ -4,9 +4,9 @@ import { I18nService } from 'nestjs-i18n';
 import type { translateOptions } from 'nestjs-i18n/dist/services/i18n.service';
 
 import { AbstractDto } from '../../common/dto/AbstractDto';
-import { TRANSLATION_DECORATOR_KEY } from '../../decorators/translate.decorator';
-import type { ITranslationDecoratorInterface } from '../../interfaces/ITranslationDecoratorInterface';
-import { ContextService } from '../../providers/context.service';
+import { TRANSLATION_DECORATOR_KEY } from '../../core/decorators/translate.decorator';
+import type { ITranslationDecoratorInterface } from '../interfaces/ITranslationDecoratorInterface';
+import { ContextService } from '../../core/providers/context.service';
 
 @Injectable()
 export class TranslationService {

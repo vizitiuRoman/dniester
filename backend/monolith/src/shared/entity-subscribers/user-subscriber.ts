@@ -6,7 +6,7 @@ import type {
 import { EventSubscriber } from 'typeorm';
 
 import { UserEntity } from '../../modules/general/user/user.entity';
-import { UtilsService } from '../../providers/utils.service';
+import { UtilsService } from '../../core/providers/utils.service';
 
 @EventSubscriber()
 export class UserSubscriber

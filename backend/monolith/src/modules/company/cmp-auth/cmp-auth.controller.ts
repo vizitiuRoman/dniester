@@ -16,10 +16,10 @@ import {
     ApiTags,
 } from '@nestjs/swagger';
 
-import { AuthCompany } from '../../../decorators/auth-company.decorator';
-import { ApiFile } from '../../../decorators/swagger.schema';
-import { CompanyAuthGuard } from '../../../guards/auth.guard';
-import { AuthCompanyInterceptor } from '../../../interceptors/auth-company-interceptor.service';
+import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
+import { ApiFile } from '../../../core/decorators/swagger.schema';
+import { CompanyAuthGuard } from '../../../core/guards/auth.guard';
+import { AuthCompanyInterceptor } from '../../../core/interceptors/auth-company-interceptor.service';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { CompanyDto } from '../../general/company/dto/CompanyDto';
 import { CmpCompanyService } from '../cmp-company/cmp-company.service';

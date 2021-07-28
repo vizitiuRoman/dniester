@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
-import { IServiceCalendarSettings } from '../../../interfaces/IServiceCalendarSettings';
+import { IServiceCalendarSettings } from '../../../shared/interfaces/IServiceCalendarSettings';
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
 import { CompanyEntity } from '../company/company.entity';

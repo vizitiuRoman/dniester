@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthCompany } from '../../../decorators/auth-company.decorator';
-import { CompanyAuth, UUIDParam } from '../../../decorators/http.decorators';
+import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
+import { CompanyAuth, UUIDParam } from '../../../core/decorators/http.decorators';
 import { BookingDto } from '../../general/booking/dto/BookingDto';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { CmpBookingService } from './cmp-booking.service';

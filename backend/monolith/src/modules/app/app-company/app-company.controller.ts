@@ -10,8 +10,8 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { RoleType } from '../../../common/constants/role-type';
 import { PageDto } from '../../../common/dto/PageDto';
-import { AuthCompany } from '../../../decorators/auth-company.decorator';
-import { CompanyAuth, UUIDParam } from '../../../decorators/http.decorators';
+import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
+import { CompanyAuth, UUIDParam } from '../../../core/decorators/http.decorators';
 import { TranslationService } from '../../../shared/services/translation.service';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { CompaniesPageOptionsDto } from '../../general/company/dto/CompaniesPageOptionsDto';

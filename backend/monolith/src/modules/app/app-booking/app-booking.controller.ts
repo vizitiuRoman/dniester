@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthCompany } from '../../../decorators/auth-company.decorator';
-import { CompanyAuth } from '../../../decorators/http.decorators';
+import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
+import { CompanyAuth } from '../../../core/decorators/http.decorators';
 import { BookingDto } from '../../general/booking/dto/BookingDto';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { AppBookingService } from './app-booking.service';

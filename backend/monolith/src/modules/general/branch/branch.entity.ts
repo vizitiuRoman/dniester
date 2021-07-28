@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
-import { IBranchCalendarSettings } from '../../../interfaces/IBranchCalendarSettings';
+import { IBranchCalendarSettings } from '../../../shared/interfaces/IBranchCalendarSettings';
 import { CompanyEntity } from '../company/company.entity';
 import { ReviewEntity } from '../review/review.entity';
 import { ServiceEntity } from '../service/service.entity';

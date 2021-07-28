@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
 import path from 'path';
 
-import { contextMiddleware } from './middlewares';
+import { contextMiddleware } from './core/middlewares';
 import { AppBookingModule } from './modules/app/app-booking/app-booking.module';
 import { AppBranchModule } from './modules/app/app-branch/app-branch.module';
 import { AppCompanyModule } from './modules/app/app-company/app-company.module';

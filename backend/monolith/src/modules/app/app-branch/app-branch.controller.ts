@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { UserAuth } from '../../../decorators/http.decorators';
+import { UserAuth } from '../../../core/decorators/http.decorators';
 import { BranchDto } from '../../general/branch/dto/BranchDto';
 import { AppBranchService } from './app-branch.service';
 

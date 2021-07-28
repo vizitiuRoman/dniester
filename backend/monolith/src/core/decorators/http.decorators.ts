@@ -11,7 +11,7 @@ import {
 import type { Type } from '@nestjs/common/interfaces';
 import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
-import type { RoleType } from '../common/constants/role-type';
+import type { RoleType } from '../../common/constants/role-type';
 import { CompanyAuthGuard, UserAuthGuard } from '../guards/auth.guard';
 import { RolesGuard } from '../guards/roles.guard';
 import { AuthCompanyInterceptor } from '../interceptors/auth-company-interceptor.service';

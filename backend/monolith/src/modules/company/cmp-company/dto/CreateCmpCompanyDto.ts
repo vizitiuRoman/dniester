@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-import { Trim } from '../../../../decorators/transforms.decorator';
+import { Trim } from '../../../../core/decorators/transforms.decorator';
 
 export class CreateCmpCompanyDto {
     @ApiProperty()

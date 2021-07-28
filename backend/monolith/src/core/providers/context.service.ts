@@ -1,7 +1,7 @@
 import requestContext from 'request-context';
 
-import type { CompanyEntity } from '../modules/general/company/company.entity';
-import type { UserEntity } from '../modules/general/user/user.entity';
+import type { CompanyEntity } from '../../modules/general/company/company.entity';
+import type { UserEntity } from '../../modules/general/user/user.entity';
 
 export class ContextService {
     private static readonly nameSpace = 'request';

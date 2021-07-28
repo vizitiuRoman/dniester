@@ -6,7 +6,7 @@ import type {
 import { Injectable } from '@nestjs/common';
 import type { Observable } from 'rxjs';
 
-import type { UserEntity } from '../modules/general/user/user.entity';
+import type { UserEntity } from '../../modules/general/user/user.entity';
 import { ContextService } from '../providers/context.service';
 
 @Injectable()

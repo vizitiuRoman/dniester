@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
-import { AuthUser } from '../../../decorators/auth-user.decorator';
-import { UserAuth } from '../../../decorators/http.decorators';
+import { AuthUser } from '../../../core/decorators/auth-user.decorator';
+import { UserAuth } from '../../../core/decorators/http.decorators';
 import { UserDto } from '../../general/user/dto/UserDto';
 import { UserEntity } from '../../general/user/user.entity';
 import { AppUserService } from '../app-user/app-user.service';

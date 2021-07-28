@@ -11,7 +11,7 @@ import type { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec
 import { reverseObjectKeys } from '@nestjs/swagger/dist/utils/reverse-object-keys.util';
 import { mapValues } from 'lodash';
 
-import type { IApiFile } from '../interfaces/IApiFile';
+import type { IApiFile } from '../../shared/interfaces/IApiFile';
 
 function explore(instance: any, propertyKey: string) {
     const types: Array<Type<unknown>> = Reflect.getMetadata(

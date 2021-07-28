@@ -9,7 +9,7 @@ import type { AbstractDto } from './common/dto/AbstractDto';
 import { PageDto } from './common/dto/PageDto';
 import { PageMetaDto } from './common/dto/PageMetaDto';
 import type { PageOptionsDto } from './common/dto/PageOptionsDto';
-import { VIRTUAL_COLUMN_KEY } from './decorators/virtual-column.decorator';
+import { VIRTUAL_COLUMN_KEY } from './core/decorators/virtual-column.decorator';
 
 declare global {
     interface Array<T> {
