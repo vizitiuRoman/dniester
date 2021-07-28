@@ -54,51 +54,33 @@ export class CmpServiceService {
         }
     }
 
-    public async getCompanyService(
-        id: string,
-        companyId: string,
-    ): Promise<ServiceDto> {
+    public async getService(id: string): Promise<ServiceDto> {
         try {
             return (
                 await this.serviceRepository.findOne({
                     where: {
                         id,
-                        companyId,
                     },
                 })
             ).toDto();
         } catch (e) {
-            Logger.error(
-                '[getCompanyService] error',
-                e,
-                CmpServiceService.name,
-            );
+            Logger.error('[getService] error', e, CmpServiceService.name);
         }
     }
 
-    public async deleteCompanyService(
-        id: string,
-        companyId: string,
-    ): Promise<ServiceDto> {
+    public async deleteService(id: string): Promise<ServiceDto> {
         try {
             const service = await this.serviceRepository.findOne({
                 where: {
                     id,
-                    companyId,
                 },
             });
             if (!service) {
-                throw new NotFoundException(
-                    `not found service: id ${id} companyId ${companyId}`,
-                );
+                throw new NotFoundException(`not found service: id ${id}`);
             }
             return (await this.serviceRepository.remove(service)).toDto();
         } catch (e) {
-            Logger.error(
-                '[deleteCompanyService] error',
-                e,
-                CmpServiceService.name,
-            );
+            Logger.error('[deleteService] error', e, CmpServiceService.name);
         }
     }
 }

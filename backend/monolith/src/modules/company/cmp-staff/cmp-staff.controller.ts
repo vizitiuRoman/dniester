@@ -11,7 +11,10 @@ import {
 import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
-import { CompanyAuth, UUIDParam } from '../../../core/decorators/http.decorators';
+import {
+    CompanyAuth,
+    UUIDParam,
+} from '../../../core/decorators/http.decorators';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { StaffDto } from '../../general/staff/dto/StaffDto';
 import { CmpStaffService } from './cmp-staff.service';
@@ -67,11 +70,8 @@ export class CmpStaffController {
         description: 'Get staff',
         type: StaffDto,
     })
-    getCompanyStaff(
-        @AuthCompany() company: CompanyEntity,
-        @UUIDParam('id') staffId: string,
-    ): Promise<StaffDto> {
-        return this.cmpStaffService.getCompanyStaff(staffId, company.id);
+    getCompanyStaff(@UUIDParam('id') staffId: string): Promise<StaffDto> {
+        return this.cmpStaffService.getStaff(staffId);
     }
 
     @Delete(':id')
@@ -82,10 +82,7 @@ export class CmpStaffController {
         description: 'Delete staff',
         type: StaffDto,
     })
-    deleteCompanyStaff(
-        @AuthCompany() company: CompanyEntity,
-        @UUIDParam('id') staffId: string,
-    ): Promise<StaffDto> {
-        return this.cmpStaffService.getCompanyStaff(staffId, company.id);
+    deleteCompanyStaff(@UUIDParam('id') staffId: string): Promise<StaffDto> {
+        return this.cmpStaffService.deleteStaff(staffId);
     }
 }

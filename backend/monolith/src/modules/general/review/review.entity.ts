@@ -11,6 +11,9 @@ export class ReviewEntity extends AbstractEntity<ReviewDto> {
     @Column({ nullable: true })
     name: string;
 
+    @Column({ nullable: true })
+    userId: string;
+
     @ManyToOne(() => BranchEntity, (svc) => svc.reviews)
     branch: BranchEntity[];
 

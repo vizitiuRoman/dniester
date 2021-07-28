@@ -46,43 +46,33 @@ export class CmpStaffService {
         }
     }
 
-    public async getCompanyStaff(
-        id: string,
-        companyId: string,
-    ): Promise<StaffDto> {
+    public async getStaff(id: string): Promise<StaffDto> {
         try {
             return (
                 await this.staffRepository.findOne({
                     where: {
                         id,
-                        companyId,
                     },
                 })
             ).toDto();
         } catch (e) {
-            Logger.error('[getCompanyStaff] error', e, CmpStaffService.name);
+            Logger.error('[getStaff] error', e, CmpStaffService.name);
         }
     }
 
-    public async deleteCompanyStaff(
-        id: string,
-        companyId: string,
-    ): Promise<StaffDto> {
+    public async deleteStaff(id: string): Promise<StaffDto> {
         try {
             const staff = await this.staffRepository.findOne({
                 where: {
                     id,
-                    companyId,
                 },
             });
             if (!staff) {
-                throw new NotFoundException(
-                    `not found staff: id ${id} companyId ${companyId}`,
-                );
+                throw new NotFoundException(`not found staff: id ${id}`);
             }
             return (await this.staffRepository.remove(staff)).toDto();
         } catch (e) {
-            Logger.error('[deleteCompanyStaff] error', e, CmpStaffService.name);
+            Logger.error('[deleteStaff] error', e, CmpStaffService.name);
         }
     }
 }

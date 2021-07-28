@@ -11,7 +11,10 @@ import {
 import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthCompany } from '../../../core/decorators/auth-company.decorator';
-import { CompanyAuth, UUIDParam } from '../../../core/decorators/http.decorators';
+import {
+    CompanyAuth,
+    UUIDParam,
+} from '../../../core/decorators/http.decorators';
 import { CompanyEntity } from '../../general/company/company.entity';
 import { ServiceDto } from '../../general/service/dto/ServiceDto';
 import { CmpServiceService } from './cmp-service.service';
@@ -70,10 +73,9 @@ export class CmpServiceController {
         type: ServiceDto,
     })
     getCompanyService(
-        @AuthCompany() company: CompanyEntity,
         @UUIDParam('id') serviceId: string,
     ): Promise<ServiceDto> {
-        return this.cmpServiceService.getCompanyService(serviceId, company.id);
+        return this.cmpServiceService.getService(serviceId);
     }
 
     @Delete(':id')
@@ -85,9 +87,8 @@ export class CmpServiceController {
         type: ServiceDto,
     })
     deleteCompanyService(
-        @AuthCompany() company: CompanyEntity,
         @UUIDParam('id') serviceId: string,
     ): Promise<ServiceDto> {
-        return this.cmpServiceService.getCompanyService(serviceId, company.id);
+        return this.cmpServiceService.deleteService(serviceId);
     }
 }

@@ -54,51 +54,33 @@ export class CmpBookingService {
         }
     }
 
-    public async getCompanyBooking(
-        id: string,
-        companyId: string,
-    ): Promise<BookingDto> {
+    public async getBooking(id: string): Promise<BookingDto> {
         try {
             return (
                 await this.bookingRepository.findOne({
                     where: {
                         id,
-                        companyId,
                     },
                 })
             ).toDto();
         } catch (e) {
-            Logger.error(
-                '[getCompanyBooking] error',
-                e,
-                CmpBookingService.name,
-            );
+            Logger.error('[getBooking] error', e, CmpBookingService.name);
         }
     }
 
-    public async deleteCompanyBooking(
-        id: string,
-        companyId: string,
-    ): Promise<BookingDto> {
+    public async deleteBooking(id: string): Promise<BookingDto> {
         try {
             const booking = await this.bookingRepository.findOne({
                 where: {
                     id,
-                    companyId,
                 },
             });
             if (!booking) {
-                throw new NotFoundException(
-                    `not found booking: id ${id} companyId ${companyId}`,
-                );
+                throw new NotFoundException(`not found booking: id ${id}`);
             }
             return (await this.bookingRepository.remove(booking)).toDto();
         } catch (e) {
-            Logger.error(
-                '[deleteCompanyBooking] error',
-                e,
-                CmpBookingService.name,
-            );
+            Logger.error('[deleteBooking] error', e, CmpBookingService.name);
         }
     }
 }
