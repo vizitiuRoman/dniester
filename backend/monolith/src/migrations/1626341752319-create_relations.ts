@@ -29,7 +29,7 @@ export class createRelations1626341752319 implements MigrationInterface {
 
             ALTER TABLE "branches" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id");
 
-            ALTER TABLE "reviews" ADD FOREIGN KEY ("branch_id") REFERENCES "branches" ("id");
+            ALTER TABLE "reviews" ADD FOREIGN KEY ("service_id") REFERENCES "services" ("id");
 
             ALTER TABLE "reviews" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id");
 

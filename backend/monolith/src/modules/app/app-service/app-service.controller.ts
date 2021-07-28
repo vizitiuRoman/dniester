@@ -26,7 +26,7 @@ export class AppServiceController {
     })
     getServices(): Promise<ServiceDto[]> {
         return this.appServiceService.getServices({
-            relations: ['branches'],
+            relations: ['branches', 'reviews'],
         });
     }
 

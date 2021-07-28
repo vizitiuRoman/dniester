@@ -67,7 +67,7 @@ export class AppReviewController {
         description: 'Get review',
         type: ReviewDto,
     })
-    getUserReview(@UUIDParam('id') reviewId: string): Promise<ReviewDto> {
+    getReview(@UUIDParam('id') reviewId: string): Promise<ReviewDto> {
         return this.appReviewReview.getReview(reviewId);
     }
 

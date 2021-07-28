@@ -12,6 +12,7 @@ import { IServiceCalendarSettings } from '../../../shared/interfaces/IServiceCal
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
 import { CompanyEntity } from '../company/company.entity';
+import { ReviewEntity } from '../review/review.entity';
 import { StaffEntity } from '../staff/staff.entity';
 import { UserEntity } from '../user/user.entity';
 import { ServiceDto } from './dto/ServiceDto';
@@ -50,6 +51,9 @@ export class ServiceEntity extends AbstractEntity<ServiceDto> {
 
     @OneToMany(() => StaffEntity, (svc) => svc.service)
     staffs: StaffEntity[];
+
+    @OneToMany(() => ReviewEntity, (svc) => svc.service)
+    reviews: ReviewEntity[];
 
     dtoClass = ServiceDto;
 }

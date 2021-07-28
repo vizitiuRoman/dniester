@@ -11,7 +11,6 @@ import {
 import { AbstractEntity } from '../../../common/abstract.entity';
 import { IBranchCalendarSettings } from '../../../shared/interfaces/IBranchCalendarSettings';
 import { CompanyEntity } from '../company/company.entity';
-import { ReviewEntity } from '../review/review.entity';
 import { ServiceEntity } from '../service/service.entity';
 import { StaffEntity } from '../staff/staff.entity';
 import { BranchDto } from './dto/BranchDto';
@@ -34,9 +33,6 @@ export class BranchEntity extends AbstractEntity<BranchDto> {
 
     @OneToMany(() => StaffEntity, (svc) => svc.branch)
     staffs: StaffEntity[];
-
-    @OneToMany(() => ReviewEntity, (svc) => svc.branch)
-    reviews: ReviewEntity[];
 
     @ManyToMany(() => ServiceEntity, (svc) => svc.branches)
     @JoinTable({

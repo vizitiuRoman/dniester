@@ -8,7 +8,7 @@ export class createReviewsTable1626341618000 implements MigrationInterface {
                 "message"       character varying,
                 "rate"          float,
                 "company_id"    uuid              NOT NULL,
-                "branch_id"     uuid              NOT NULL,
+                "service_id"    uuid              NOT NULL,
                 "user_id"       uuid              NOT NULL,
                 "created_at"    TIMESTAMP         NOT NULL DEFAULT now(),
                 "updated_at"    TIMESTAMP         NOT NULL DEFAULT now(),
