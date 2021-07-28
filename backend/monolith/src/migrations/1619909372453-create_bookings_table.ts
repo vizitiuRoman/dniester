@@ -2,12 +2,17 @@ import type { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class createBookingsTable1619909372453 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(
+            "CREATE TYPE booking_status_t as enum('COMPLETED', 'ACTIVE', 'CANCELLED');",
+        );
+
         await queryRunner.query(`
             CREATE TABLE "bookings"
             (
                 "id"            uuid              NOT NULL DEFAULT uuid_generate_v4(),
                 "service_id"    uuid              NOT NULL,
                 "company_id"    uuid              NOT NULL,
+                "status"        booking_status_t  NOT NULL,
                 "staff_id"      uuid              NOT NULL,
                 "start"         TIMESTAMP         NOT NULL,
                 "end"           TIMESTAMP         NOT NULL,

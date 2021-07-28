@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import { BookingStatusEnum } from '../../../shared/enums/booking-status.enum';
 import { CompanyEntity } from '../company/company.entity';
 import { ServiceEntity } from '../service/service.entity';
 import { StaffEntity } from '../staff/staff.entity';
@@ -17,6 +18,9 @@ export class BookingEntity extends AbstractEntity<BookingDto> {
 
     @Column({ nullable: false })
     start: Date;
+
+    @Column({ type: 'enum', enum: BookingStatusEnum })
+    status: BookingStatusEnum;
 
     @Column({ nullable: false })
     end: Date;
