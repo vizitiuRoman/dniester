@@ -1,16 +1,64 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import type { IStaffWorkDays } from '../../../shared/interfaces/IStaffWorkDays';
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
 import { CompanyEntity } from '../company/company.entity';
 import { ServiceEntity } from '../service/service.entity';
 import { StaffDto } from './dto/StaffDto';
 
+enum Gender {
+    Male,
+    Female,
+    Other
+}
+
 @Entity({ name: 'staffs' })
 export class StaffEntity extends AbstractEntity<StaffDto> {
     @Column({ nullable: false })
     name: string;
+
+    @Column({ nullable: false, type: 'enum', enum: Gender })
+    gender: Gender;
+
+    @Column({ nullable: false })
+    specialization: string;
+
+    @Column({ nullable: false })
+    experience: string;
+
+    @Column({ nullable: false })
+    designation: string;
+
+    @Column({ nullable: false })
+    email: string;
+
+    @Column({ nullable: false })
+    mobile: string;
+
+    @Column({ nullable: false })
+    startHour: string;
+
+    @Column({ nullable: false })
+    endHour: string;
+
+    @Column({ nullable: false })
+    @Column({
+        type: 'jsonb',
+        array: false,
+        default: () => "'[]'",
+        nullable: false,
+    })
+    availableDays: number[];
+
+    @Column({
+        type: 'jsonb',
+        array: false,
+        default: () => "'[]'",
+        nullable: false,
+    })
+    workDays: IStaffWorkDays[];
 
     @Column({ nullable: false })
     companyId: string;
