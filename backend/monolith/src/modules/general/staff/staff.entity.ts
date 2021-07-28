@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { AbstractEntity } from '../../../common/abstract.entity';
+import { GenderEnum } from '../../../shared/enums/gender.enum';
 import type { IStaffWorkDays } from '../../../shared/interfaces/IStaffWorkDays';
 import { BookingEntity } from '../booking/booking.entity';
 import { BranchEntity } from '../branch/branch.entity';
@@ -8,19 +9,13 @@ import { CompanyEntity } from '../company/company.entity';
 import { ServiceEntity } from '../service/service.entity';
 import { StaffDto } from './dto/StaffDto';
 
-enum Gender {
-    Male,
-    Female,
-    Other
-}
-
 @Entity({ name: 'staffs' })
 export class StaffEntity extends AbstractEntity<StaffDto> {
     @Column({ nullable: false })
     name: string;
 
-    @Column({ nullable: false, type: 'enum', enum: Gender })
-    gender: Gender;
+    @Column({ nullable: false, type: 'enum', enum: GenderEnum })
+    gender: GenderEnum;
 
     @Column({ nullable: false })
     specialization: string;

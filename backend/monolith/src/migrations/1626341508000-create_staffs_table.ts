@@ -2,6 +2,10 @@ import type { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class createStaffsTable1626341508000 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(
+            "CREATE TYPE gender_t as enum('MALE', 'FEMALE');",
+        );
+
         await queryRunner.query(`
             CREATE TABLE "staffs" (
                 "id"                uuid         NOT NULL DEFAULT uuid_generate_v4(),
@@ -9,7 +13,7 @@ export class createStaffsTable1626341508000 implements MigrationInterface {
                 "service_id"        uuid,
                 "branch_id"         uuid,
                 "name"              character varying,
-                "gender"            character varying,
+                "gender"            gender_t,
                 "specialization"    character varying,
                 "experience"        character varying,
                 "designation"       character varying,
@@ -17,8 +21,8 @@ export class createStaffsTable1626341508000 implements MigrationInterface {
                 "mobile"            character varying,
                 "start_hour"        TIMESTAMP,
                 "end_hour"          TIMESTAMP,
-                "available_days"    jsonb '[]'::jsonb,
-                "work_days"         jsonb '[]'::jsonb,
+                "available_days"    jsonb       NOT NULL DEFAULT '[]'::jsonb,
+                "work_days"         jsonb       NOT NULL DEFAULT '[]'::jsonb,
                 "created_at"        TIMESTAMP         NOT NULL DEFAULT now(),
                 "updated_at"        TIMESTAMP         NOT NULL DEFAULT now(),
                 CONSTRAINT "PK_a3ffb1cf164q4b9fc6f1c7b7433" PRIMARY KEY ("id")
@@ -26,6 +30,5 @@ export class createStaffsTable1626341508000 implements MigrationInterface {
         `);
     }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-    }
+    public async down(queryRunner: QueryRunner): Promise<void> {}
 }
