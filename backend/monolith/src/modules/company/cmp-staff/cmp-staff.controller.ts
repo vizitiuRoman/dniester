@@ -33,8 +33,14 @@ export class CmpStaffController {
         type: StaffDto,
         description: 'Successfully created staff',
     })
-    createStaff(@Body() body: CreateCmpStaffDto): Promise<StaffDto> {
-        return this.cmpStaffService.createStaff(body);
+    createStaff(
+        @AuthCompany() company: CompanyEntity,
+        @Body() body: CreateCmpStaffDto,
+    ): Promise<StaffDto> {
+        return this.cmpStaffService.createStaff({
+            ...body,
+            companyId: company.id,
+        });
     }
 
     @Put()

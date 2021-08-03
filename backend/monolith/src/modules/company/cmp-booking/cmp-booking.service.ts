@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import type { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
 
 import type { BookingEntity } from '../../general/booking/booking.entity';
@@ -19,6 +19,7 @@ export class CmpBookingService {
             return (await this.bookingRepository.save(createdBooking)).toDto();
         } catch (e) {
             Logger.error('[createBooking] error', e, CmpBookingService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -29,13 +30,14 @@ export class CmpBookingService {
             return (await this.bookingRepository.save(booking)).toDto();
         } catch (e) {
             Logger.error('[updateBooking] error', e, CmpBookingService.name);
+            throw new BadRequestException();
         }
     }
 
     public async getCompanyBookings(
         companyId: string,
         options?: FindManyOptions<BookingEntity>,
-    ): Promise<BookingDto[]> {
+    ): Promise<any> {
         try {
             return (
                 await this.bookingRepository.find({
@@ -51,6 +53,7 @@ export class CmpBookingService {
                 e,
                 CmpBookingService.name,
             );
+            throw new BadRequestException();
         }
     }
 
@@ -65,6 +68,7 @@ export class CmpBookingService {
             ).toDto();
         } catch (e) {
             Logger.error('[getBooking] error', e, CmpBookingService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -81,6 +85,7 @@ export class CmpBookingService {
             return (await this.bookingRepository.remove(booking)).toDto();
         } catch (e) {
             Logger.error('[deleteBooking] error', e, CmpBookingService.name);
+            throw new BadRequestException();
         }
     }
 }

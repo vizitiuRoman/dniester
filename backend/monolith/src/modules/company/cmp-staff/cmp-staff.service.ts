@@ -1,4 +1,9 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+    BadRequestException,
+    Injectable,
+    Logger,
+    NotFoundException,
+} from '@nestjs/common';
 import type { FindManyOptions } from 'typeorm/find-options/FindManyOptions';
 
 import type { StaffDto } from '../../general/staff/dto/StaffDto';
@@ -17,6 +22,7 @@ export class CmpStaffService {
             return (await this.staffRepository.save(createdStaff)).toDto();
         } catch (e) {
             Logger.error('[createStaff] error', e, CmpStaffService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -25,6 +31,7 @@ export class CmpStaffService {
             return (await this.staffRepository.save(staff)).toDto();
         } catch (e) {
             Logger.error('[updateStaff] error', e, CmpStaffService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -43,6 +50,7 @@ export class CmpStaffService {
             ).toDtos();
         } catch (e) {
             Logger.error('[getCompanyStaffs] error', e, CmpStaffService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -57,6 +65,7 @@ export class CmpStaffService {
             ).toDto();
         } catch (e) {
             Logger.error('[getStaff] error', e, CmpStaffService.name);
+            throw new BadRequestException();
         }
     }
 
@@ -73,6 +82,7 @@ export class CmpStaffService {
             return (await this.staffRepository.remove(staff)).toDto();
         } catch (e) {
             Logger.error('[deleteStaff] error', e, CmpStaffService.name);
+            throw new BadRequestException();
         }
     }
 }
